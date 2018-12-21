@@ -1,0 +1,17 @@
+.container-fluid{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.bgNavbar{
+    background-color: black;
+}
+.colonneGauche{
+    background-color: #D52484;
+}
+.colonneDroite{
+    background-color: #f9a098;
+}
+footer{
+height:100px;
+background-color: #ef84f4;
+}
