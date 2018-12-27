@@ -18,7 +18,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav"><!--  navbar-nav = aligne à l'horizontal les onglets-->
-                    <a class="nav-item nav-link" href="index.php">Accueil<span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="index.php">Accueil</a><!--home.php est inclus dans l'index-->
                     <a class="nav-item nav-link" href="prestation.php">Prestation et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
                     <a class="nav-item nav-link" href="conseil.php">Conseil</a>
                     <a class="nav-item nav-link" href="contact.php">Contact</a>

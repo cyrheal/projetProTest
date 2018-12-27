@@ -3,7 +3,8 @@
     padding: 0 !important;
 }
 .bgNavbar{
-    background-color: black;
+/*    #F185B3*/
+    background-color: black;  
 }
 .colonneGauche{
     background-color: #D52484;
@@ -13,5 +14,34 @@
 }
 footer{
 height:100px;
-background-color: #ef84f4;
+background-color: black;
 }
+/*tableau prestations*/
+table {
+border: 3px solid #9fc9f9;
+/*border-collapse détermine si les bordures d'un tableau sont séparées ou fusionnées*/
+border-collapse: collapse; 
+width: 80%;
+margin-bottom: 30px;
+}
+th {
+font-family: monospace;
+font-size: 25px;
+border: 2px solid #9fc9f9;
+/*taille de la première cellule (les 3 / 4))*/
+width: 75%;
+padding: 15px;
+/*pourquoi le texte align est en inherit?*/
+text-align: center !important;
+background-color: #D0E3FA;
+}
+td {
+font-family: sans-serif;
+border: 2px solid #9fc9f9;
+width: 50%;
+padding: 5px;
+text-align: center;
+background-color: #f9f6bd;
+}
+
+/*autre*/
