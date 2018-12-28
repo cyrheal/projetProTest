@@ -20,7 +20,7 @@
                 <div class="navbar-nav"><!--  navbar-nav = aligne à l'horizontal les onglets-->
                     <a class="nav-item nav-link" href="index.php">Accueil</a><!--home.php est inclus dans l'index-->
                     <a class="nav-item nav-link" href="prestation.php">Prestation et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
-                    <a class="nav-item nav-link" href="conseil.php">Conseil</a>
+                    <a class="nav-item nav-link" href="conseil.php">Conseil</a><!--à changer si dossier renomer-->
                     <a class="nav-item nav-link" href="contact.php">Contact</a>
                     <a class="nav-item nav-link" href="agenda.php">Agenda</a>
                 </div>

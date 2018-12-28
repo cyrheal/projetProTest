@@ -3,7 +3,7 @@
     padding: 0 !important;
 }
 .bgNavbar{
-/*    #F185B3*/
+    /*    #F185B3*/
     background-color: black;  
 }
 .colonneGauche{
@@ -13,35 +13,83 @@
     background-color: #f9a098;
 }
 footer{
-height:100px;
-background-color: black;
+    height:100px;
+    background-color: black;
 }
 /*tableau prestations*/
-table {
-border: 3px solid #9fc9f9;
-/*border-collapse détermine si les bordures d'un tableau sont séparées ou fusionnées*/
-border-collapse: collapse; 
-width: 80%;
-margin-bottom: 30px;
+.performanceTable {
+    border: 3px solid #9fc9f9;
+    /*border-collapse détermine si les bordures d'un tableau sont séparées ou fusionnées*/
+    border-collapse: collapse; 
+    width: 80%;
+    margin-bottom: 30px;
 }
-th {
-font-family: monospace;
-font-size: 25px;
-border: 2px solid #9fc9f9;
-/*taille de la première cellule (les 3 / 4))*/
-width: 75%;
-padding: 15px;
-/*pourquoi le texte align est en inherit?*/
-text-align: center !important;
-background-color: #D0E3FA;
+.performanceTh {
+    font-family: monospace;
+    font-size: 25px;
+    border: 2px solid #9fc9f9;
+    /*taille de la première cellule (les 3 / 4))*/
+    width: 75%;
+    padding: 15px;
+    /*pourquoi le texte align est en inherit?*/
+    text-align: center !important;
+    background-color: #D0E3FA;
 }
-td {
-font-family: sans-serif;
-border: 2px solid #9fc9f9;
-width: 50%;
-padding: 5px;
-text-align: center;
-background-color: #f9f6bd;
+.performanceTd {
+    font-family: sans-serif;
+    border: 2px solid #9fc9f9;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #f9f6bd;
+}
+/*carousel*/
+#carrousel{
+    position:relative;
+    height:200px;
+    width:700px;
+    margin:auto;
 }
 
+#carrousel ul li{
+    list-style-type: none;
+/*    position:absolute;
+    top:0;
+    left:0;*/
+}
+/*formulaire*/
+body{
+    background-color: #c98dc9;
+}
+.result{
+    background-color: #bfbfbf;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 20px;   
+}
+.exercice{
+    background-color: darkseagreen;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 6px;
+    margin: 20px;
+}
+/*calendrier*/
+calendar__table{
+    width: 90%;
+}
+calendar__table td{
+    padding: 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+    width: 14.29%; /* 100 / 7*/
+}
 /*autre*/
+
+@media screen and (max-width: 640px){
+    /*    responsive taille prestations et tarifs du tableau*/
+    th{
+        font-size: 100%;  
+    }
+}
