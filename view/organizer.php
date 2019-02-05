@@ -16,7 +16,7 @@ $firstWeekDayOfmonth = date('N', mktime(0, 0, 0, $month, 1, $year));
 $currentDay = 1;
 ?>
 <?php
-include 'template/header.php';
+include '../template/header.php';
 ?>
 <div class="col-md-12">
     <div class="row">
@@ -33,8 +33,8 @@ include 'template/header.php';
         <div class="col-md-9 colonneDroite"><!--couleur colonne droite-->
             <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
                 <h3>Agenda</h3>
-                <form class="form-group" name="form" method="POST" action="agenda.php" enctype="multipart/form-data"><!--mettre agenda.php a action-->
-                    <label  for="month">Choisir un mois : </label>
+                <form class="form-group" name="form" method="POST" action="view/organizer.php" enctype="multipart/form-data"><!--mettre agenda.php a action-->
+                    <label  for="month">Mois : </label>
                     <select name="month">
                         <?php
                         //boucle qui parcours le tableau month afin de créer les options
@@ -45,7 +45,7 @@ include 'template/header.php';
                         }
                         ?>
                     </select>
-                    <label  for="year">Choisir une année : </label>
+                    <label  for="year">Année : </label>
                     <select name="year" id="year">
                         <?php for ($yearsList = 1970; $yearsList <= 2100; $yearsList++) { ?>
                             <option value="<?= $yearsList; ?>"<?= $year == $yearsList ? 'selected' : '' ?>><?= $yearsList; ?></option>
@@ -55,18 +55,17 @@ include 'template/header.php';
                     </select>
                     <input class="btn btn-success m-3 float-center" type="submit" name="valider" role="button" value="valider"/>
                 </form>
-
                 <div class="row mx-auto">
                     <div class="col-md-12">
-                        <table>
+                        <table class="calendarTable">
                             <thead >
-                            <th>Lun</th>
-                            <th>Mar</th>
-                            <th>Mer</th>
-                            <th>Jeu</th>
-                            <th>Ven</th>
-                            <th>Sam</th>
-                            <th>Dim</th>
+                            <th class="calendarTh">Lun</th>
+                            <th class="calendarTh">Mar</th>
+                            <th class="calendarTh">Mer</th>
+                            <th class="calendarTh">Jeu</th>
+                            <th class="calendarTh">Ven</th>
+                            <th class="calendarTh">Sam</th>
+                            <th class="calendarTh">Dim</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -78,14 +77,14 @@ include 'template/header.php';
                                     for ($daysTiles = 1; $daysTiles <= $numberDaysInMonth + $firstWeekDayOfmonth - 1; $daysTiles++) {
                                         //le if nous place le premier jour du mois de la semaine.
                                         if ($firstWeekDayOfmonth <= $daysTiles) {
-                                            ?> <td><?= $currentDay; ?></td><?php
+                                            ?> <td class="calendarTd"><?= $currentDay; ?></td><?php
                                             $currentDay++;
                                             //le else permet de créer des cases vides jusqu'au premier jour de la semaine
                                         } else {
-                                            ?><td></td><?php
+                                            ?><td class="calendarTd"></td><?php
                                         }
-                                        //multiple de 7 qui permet de passer à la ligne
-                                        if ($daysTiles % 7 == 0) {
+                                        //multiple de 7 qui permet de passer à la ligne, si 7/7= 1 et reste 0
+                                        if ($daysTiles % 7 == 0) { 
                                             ?></tr><tr><?php
                                         }
                                     }
@@ -100,5 +99,5 @@ include 'template/header.php';
     </div><!--fin raw-->
 </div><!--fin class col md 12-->
 <?php
-include 'template/footer.php';
+include '../template/footer.php';
 ?>

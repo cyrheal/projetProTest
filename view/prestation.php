@@ -1,23 +1,15 @@
 <?php
-include 'template/header.php';
+include '../template/header.php';
+include 'sidebar.php';
 ?>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-3 colonneGauche"><!--couleur colonne gauche-->
-            <ul class="mt-5">
-                <li>TEST</li>
-                <li>TEST</li>
-                <li>TEST</li>
-                <li>TEST</li>
-                <li>TEST</li>
-                <li>TEST</li>
-            </ul>
-        </div>
         <div class="col-md-9 colonneDroite"><!--couleur colonne droite-->
+            
+<!--            remettre des col avec un offset md-1 col-md-8  pour retirer ml-3 mt5et changer lecc de performancetable -->
+
             <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
                 <h2>Prestations et tarifs</h2>
                 <p>Voici mes tarifs avec la déco comprise (strass, paillettes et nail art simple) :</p>
-                <table class="performanceTable">
+                <table class="table performanceTable">
                     <tr>
                         <th class="performanceTh">Prestations</th>
                         <th class="performanceTh">Tarifs</th>
@@ -72,7 +64,7 @@ include 'template/header.php';
                     </tr>
                 </table>
                 <p>Le déplacement est gratuit dans un rayon de 5 km autour de Soissons. Au-delà de 5 km, il y a un supplément : </p>
-                <table class="performanceTable">
+                <table class="table performanceTable">
                     <tr>
                         <th class="performanceTh">Nombre de kilomètres</th>
                         <th class="performanceTh">Supplément</th>
@@ -96,8 +88,6 @@ include 'template/header.php';
                 </table>
             </div>
         </div>
-    </div>
-</div>
 <?php
-include 'template/footer.php';
+include '../template/footer.php';
 ?>

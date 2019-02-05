@@ -6,7 +6,10 @@ $(document).ready(function () {
             $currentImg = $img.eq(i); // enfin, on cible l'image courante, qui possède l'index i (0 pour l'instant)
     $img.css('display', 'none'); // on cache les images
     $currentImg.css('display', 'block'); // on affiche seulement l'image courante
-    $carrousel.append('<div class="controls"> <span class="prev">Precedent</span> <span class="next">Suivant</span> </div>');
+    
+    
+    
+    
     $('.next').click(function () { // image suivante
         i++; // on incrémente le compteur
         if (i <= indexImg) {
@@ -17,6 +20,8 @@ $(document).ready(function () {
             i = indexImg;
         }
     });
+    
+    
     $('.prev').click(function () { // image précédente
         i--; // on décrémente le compteur, puis on réalise la même chose que pour la fonction "suivante"
         if (i >= 0) {
@@ -27,6 +32,10 @@ $(document).ready(function () {
             i = 0;
         }
     });
+    
+    
+    
+    
     function slideImg() {
         setTimeout(function () { // on utilise une fonction anonyme
             if (i < indexImg) { // si le compteur est inférieur au dernier index

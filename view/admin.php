@@ -1,5 +1,5 @@
 <?php
-include 'template/header.php';
+include '../template/header.php';
 ?>
 <div class="col-md-12">
     <div class="row">
@@ -19,9 +19,9 @@ include 'template/header.php';
                     <!--carrousel-->
                <div id="carrousel">
                     <ul>
-                        <li><img src="assets/img/header/head2.jpeg" /></li>
-                        <li><img src="assets/img/header/head.jpeg" /></li>
-                        <li><img src="assets/img/header/head1.jpeg" /></li>
+                        <li><img src="../assets/img/header/head2.jpeg" /></li>
+                        <li><img src="../assets/img/header/head.jpeg" /></li>
+                        <li><img src="../assets/img/header/head1.jpeg" /></li>
                     </ul>
                 </div>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, at, recusandae blanditiis numquam praesentium dolorem magnam ab nemo quo velit dolores ullam quae placeat amet qui nobis optio. Suscipit, harum.</p>
@@ -30,5 +30,5 @@ include 'template/header.php';
     </div>
 </div>
 <?php
-include 'template/footer.php';
+include '../template/footer.php';
 ?>

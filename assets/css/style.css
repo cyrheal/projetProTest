@@ -1,21 +1,50 @@
-.container-fluid{
-    margin: 0 !important;
-    padding: 0 !important;
+/******** STOCK POUBELLE **********/
+/*    #F185B3 => BG NAVBAR
+/*
+***********************************/
+body{
+    background-color: #c98dc9;
 }
+
+body .container-fluid{
+    margin: 0;
+    padding: 0;
+}
+/****** HEADER ******/
+/*nom de l'entrepris*/
+@font-face {
+    font-family: "JandaRomantic";
+    src: url('../fonts/janda_romantic/JandaRomantic.ttf');
+}
+
+header{
+    background: #fbc2c9 url('../img/header/headPink2.jpg') left center no-repeat;
+    height: 300px;
+}
+
+header h1 {
+    position:absolute; 
+    z-index:2; 
+    margin-left: 33%; 
+    margin-top: 7%;
+    font-size: 80px;
+    font-family: 'JandaRomantic', serif;
+}
+
+/****** NAVBAR ******/
 .bgNavbar{
-    /*    #F185B3*/
     background-color: black;  
 }
+
+
+
 .colonneGauche{
     background-color: #D52484;
 }
 .colonneDroite{
     background-color: #f9a098;
 }
-footer{
-    height:100px;
-    background-color: black;
-}
+
 /*tableau prestations*/
 .performanceTable {
     border: 3px solid #9fc9f9;
@@ -46,21 +75,17 @@ footer{
 /*carousel*/
 #carrousel{
     position:relative;
-    height:200px;
-    width:700px;
-    margin:auto;
+    margin: auto;
 }
 
 #carrousel ul li{
     list-style-type: none;
-/*    position:absolute;
-    top:0;
-    left:0;*/
+    /*    position:absolute;
+        top:0;
+        left:0;*/
 }
 /*formulaire*/
-body{
-    background-color: #c98dc9;
-}
+
 .result{
     background-color: #bfbfbf;
     border: 2px solid black;
@@ -76,20 +101,51 @@ body{
     margin: 20px;
 }
 /*calendrier*/
-calendar__table{
-    width: 90%;
+
+.calendarTable{
+    width: 60%;
+    margin-bottom: 30px;
 }
-calendar__table td{
-    padding: 10px;
-    border: 1px solid #ccc;
-    vertical-align: top;
-    width: 14.29%; /* 100 / 7*/
+.calendarTh {
+    border: 2px solid #9fc9f9;
+    padding: 25px;
+    text-align: center !important;
+    background-color: #D0E3FA;
+}
+.calendarTd {
+    border: 2px solid #9fc9f9;
+    padding: 5px;
+    text-align: center;
+    background-color: #f9f6bd;
+}
+
+/******** FOOTER *********/
+footer{
+    height:100px;
+    background-color: black;
 }
 /*autre*/
 
 @media screen and (max-width: 640px){
     /*    responsive taille prestations et tarifs du tableau*/
-    th{
+    .performanceTh{
         font-size: 100%;  
+    }
+    .performanceTable{
+        margin-left: -4%;
+    }
+    .calendarTh {
+        padding: 5px; 
+    }
+    .calendarTable{
+        margin-left: -20px;
+    }
+    header{
+    background-size: 100% 100%;
+    height: 80px;
+}
+    
+    header h1{
+        font-size: 20px;
     }
 }
