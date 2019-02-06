@@ -1,6 +1,8 @@
 /******** STOCK POUBELLE **********/
 /*    #F185B3 => BG NAVBAR
-/*
+/*    /*    position:absolute;
+        top:0;
+        left:0; carousel
 ***********************************/
 body{
     background-color: #c98dc9;
@@ -35,13 +37,10 @@ header h1 {
 .bgNavbar{
     background-color: black;  
 }
-
-
-
-.colonneGauche{
+.sidebar{
     background-color: #D52484;
 }
-.colonneDroite{
+.mainContent{
     background-color: #f9a098;
 }
 
@@ -76,16 +75,19 @@ header h1 {
 #carrousel{
     position:relative;
     margin: auto;
+    margin-bottom: 2%;
 }
-
+.carouselImg{
+    width: 95%;
+    text-align: center;
+}
 #carrousel ul li{
     list-style-type: none;
-    /*    position:absolute;
-        top:0;
-        left:0;*/
+}
+.buttonCarousel{
+    background-color: #fac1c8;
 }
 /*formulaire*/
-
 .result{
     background-color: #bfbfbf;
     border: 2px solid black;
@@ -141,10 +143,10 @@ footer{
         margin-left: -20px;
     }
     header{
-    background-size: 100% 100%;
-    height: 80px;
-}
-    
+        background-size: 100% 100%;
+        height: 80px;
+    }
+
     header h1{
         font-size: 20px;
     }

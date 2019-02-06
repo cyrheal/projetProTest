@@ -6,11 +6,8 @@ $(document).ready(function () {
             $currentImg = $img.eq(i); // enfin, on cible l'image courante, qui possède l'index i (0 pour l'instant)
     $img.css('display', 'none'); // on cache les images
     $currentImg.css('display', 'block'); // on affiche seulement l'image courante
-    
-    
-    
-    
-    $('.next').click(function () { // image suivante
+    // image suivante
+    $('.next').click(function () {
         i++; // on incrémente le compteur
         if (i <= indexImg) {
             $img.css('display', 'none'); // on cache les images
@@ -20,9 +17,8 @@ $(document).ready(function () {
             i = indexImg;
         }
     });
-    
-    
-    $('.prev').click(function () { // image précédente
+    // image précédente
+    $('.prev').click(function () {
         i--; // on décrémente le compteur, puis on réalise la même chose que pour la fonction "suivante"
         if (i >= 0) {
             $img.css('display', 'none');
@@ -32,10 +28,6 @@ $(document).ready(function () {
             i = 0;
         }
     });
-    
-    
-    
-    
     function slideImg() {
         setTimeout(function () { // on utilise une fonction anonyme
             if (i < indexImg) { // si le compteur est inférieur au dernier index

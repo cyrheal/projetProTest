@@ -24,10 +24,11 @@
                     <a class="nav-item nav-link" href="contact.php">Contact</a>
                     <a class="nav-item nav-link" href="organizer.php">Agenda</a>
                     <a class="nav-item nav-link" href="register.php">S'inscrire</a><!--à changer si dossier renomer-->
+                    <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
                     <a class="nav-item nav-link" href="admin.php">Administrateur</a>
                 </div>
             </div>
         </nav>       
         <div class="container-fluid">
-            <div class="col-md-12"><!--home est include dans index entre le header et le footer-->
+            <div class="col-md-12 col-lg-12 col-xl-12 "><!--home est include dans index entre le header et le footer-->
     <div class="row">
