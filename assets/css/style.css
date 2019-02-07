@@ -4,26 +4,24 @@
         top:0;
         left:0; carousel
 ***********************************/
+/*** BODY ***/
 body{
     background-color: #c98dc9;
 }
-
 body .container-fluid{
     margin: 0;
     padding: 0;
 }
-/****** HEADER ******/
-/*nom de l'entrepris*/
+/*** HEADER ***/
+/*NOM DE L'ENTREPRISE*/
 @font-face {
     font-family: "JandaRomantic";
     src: url('../fonts/janda_romantic/JandaRomantic.ttf');
 }
-
 header{
     background: #fbc2c9 url('../img/header/headPink2.jpg') left center no-repeat;
     height: 300px;
 }
-
 header h1 {
     position:absolute; 
     z-index:2; 
@@ -32,8 +30,10 @@ header h1 {
     font-size: 80px;
     font-family: 'JandaRomantic', serif;
 }
-
-/****** NAVBAR ******/
+#modalStyle{
+    background-color: #f7f071;
+}
+/*** NAVBAR ***/
 .bgNavbar{
     background-color: black;  
 }
@@ -43,8 +43,7 @@ header h1 {
 .mainContent{
     background-color: #f9a098;
 }
-
-/*tableau prestations*/
+/*** TABLEAU PRESTATION ***/
 .performanceTable {
     border: 3px solid #9fc9f9;
     /*border-collapse détermine si les bordures d'un tableau sont séparées ou fusionnées*/
@@ -71,8 +70,8 @@ header h1 {
     text-align: center;
     background-color: #f9f6bd;
 }
-/*carousel*/
-#carrousel{
+/*** CARROUSEL ***/
+#carousel{
     position:relative;
     margin: auto;
     margin-bottom: 2%;
@@ -81,13 +80,13 @@ header h1 {
     width: 95%;
     text-align: center;
 }
-#carrousel ul li{
+#carousel ul li{
     list-style-type: none;
 }
 .buttonCarousel{
     background-color: #fac1c8;
 }
-/*formulaire*/
+/*** formulaire ***/
 .result{
     background-color: #bfbfbf;
     border: 2px solid black;
@@ -102,8 +101,7 @@ header h1 {
     padding: 6px;
     margin: 20px;
 }
-/*calendrier*/
-
+/*** calendrier ***/
 .calendarTable{
     width: 60%;
     margin-bottom: 30px;
@@ -121,12 +119,12 @@ header h1 {
     background-color: #f9f6bd;
 }
 
-/******** FOOTER *********/
+/*** FOOTER ***/
 footer{
     height:100px;
     background-color: black;
 }
-/*autre*/
+/***autre***/
 
 @media screen and (max-width: 640px){
     /*    responsive taille prestations et tarifs du tableau*/

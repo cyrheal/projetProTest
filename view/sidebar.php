@@ -5,7 +5,7 @@
     </ul>
     <!--carrousel-->
     <div class=""> <!-- a remettre? col-md-12 offset-xl-1  col-xl-11-->
-        <div id="carrousel"> <!-- class="ml-0 mr-5"-->
+        <div id="carousel"> <!-- class="ml-0 mr-5"-->
             <img class="carouselImg" src="../assets/img/header/head2.jpeg" />
             <img class="carouselImg" src="../assets/img/header/head.jpeg" />
             <img class="carouselImg" src="../assets/img/header/head1.jpeg" />

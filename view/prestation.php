@@ -63,29 +63,6 @@ include 'sidebar.php';
                 <td class="performanceTd">sup. entre 2€ et 5€</td>
             </tr>
         </table>
-        <p>Le déplacement est gratuit dans un rayon de 5 km autour de Soissons. Au-delà de 5 km, il y a un supplément : </p>
-        <table class="table performanceTable">
-            <tr>
-                <th class="performanceTh">Nombre de kilomètres</th>
-                <th class="performanceTh">Supplément</th>
-            </tr>
-            <tr>
-                <td class="performanceTd">plus de 5 km jusqu'à 10 km</td>
-                <td class="performanceTd">1€</td>
-            </tr>
-            <tr>
-                <td class="performanceTd">plus de 10 km jusqu'à 15 km</td>
-                <td class="performanceTd">2€</td>
-            </tr>
-            <tr>
-                <td class="performanceTd">plus de 15 km jusqu'à 20 km</td>
-                <td class="performanceTd">3€</td>
-            </tr>
-            <tr>
-                <td class="performanceTd">plus de 20 km jusqu'à 25 km</td>
-                <td class="performanceTd">4€</td>
-            </tr>
-        </table>
     </div>
 </div>
 <?php
