@@ -3,10 +3,10 @@ include '../template/header.php';
 include 'sidebar.php';
 ?>
 <div class="col-md-12 col-lg-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
+    <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
         <p>Formulaire d'inscription</p>
         <form>
-            <!--            changer les id type label...-->
+            <!--             changer les id type label...-->
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="lastname">Nom</label>
@@ -47,14 +47,14 @@ include 'sidebar.php';
                 <div class="form-group col-md-4">
                     <label for="inputState">Ville</label>
                     <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
+                        <option selected>Choisir...</option>
                         <option>...</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputState">Code postale</label>
                     <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
+                        <option selected>Choisir...</option>
                         <option>...</option>
                     </select>
                 </div>

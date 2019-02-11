@@ -124,6 +124,10 @@ footer{
     height:100px;
     background-color: black;
 }
+.contact{
+    text-align: center;
+    color: white;
+}
 /***autre***/
 
 @media screen and (max-width: 640px){

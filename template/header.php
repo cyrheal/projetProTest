@@ -20,8 +20,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav"><!--  navbar-nav = aligne à l'horizontal les onglets-->
                     <a class="nav-item nav-link" href="index.php">Accueil</a><!--home.php est inclus dans l'index-->
-                    <a class="nav-item nav-link" href="prestation.php">Prestation et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
-                    <a class="nav-item nav-link" href="contact.php">Contact</a>
+                    <a class="nav-item nav-link" href="prestation.php">Prestations et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
+                    <a class="nav-item nav-link" href="appointment.php">Prendre RDV</a>
                     <a class="nav-item nav-link" href="organizer.php">Agenda</a>
                     <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
                     <a class="nav-item nav-link" href="register.php">S'inscrire</a>
@@ -55,7 +55,7 @@
                     <div class="modal-footer">
                         <!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                         <!--                        <button type="button" class="btn btn-primary">Connexion</button>-->
-                        <a class="btn btn-info" href="register.php">S'inscrire</a>
+                        <p>Pas encore inscrit ? <a class="btn btn-info" href="register.php">S'inscrire</a></p>
                     </div>
                 </div>
             </div>

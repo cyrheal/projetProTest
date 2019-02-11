@@ -15,15 +15,15 @@ include 'sidebar.php';
                 <th class="performanceTh">Tarifs</th>
             </tr>
             <tr>
-                <td class="performanceTd">Pose de vernis semi permanent mains ou pieds</td>
+                <td class="performanceTd">Pose de vernis semi permanent</td>
                 <td class="performanceTd">15€</td>
             </tr>
             <tr>
-                <td class="performanceTd">Pose gel sur ongles naturels mains ou pieds</td>
+                <td class="performanceTd">Pose gel sur ongles naturels</td>
                 <td class="performanceTd">20€</td>
             </tr>
             <tr>
-                <td class="performanceTd">Pose résine sur ongles naturels mains ou pieds</td>
+                <td class="performanceTd">Pose résine sur ongles naturels</td>
                 <td class="performanceTd">25€</td>
             </tr>  
             <tr>
@@ -57,10 +57,6 @@ include 'sidebar.php';
             <tr>
                 <td class="performanceTd">Dépose résine</td>
                 <td class="performanceTd">15€</td>
-            </tr>
-            <tr>
-                <td class="performanceTd">nail art complexe</td>
-                <td class="performanceTd">sup. entre 2€ et 5€</td>
             </tr>
         </table>
     </div>
