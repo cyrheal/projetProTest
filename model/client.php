@@ -23,7 +23,7 @@ class client {
 
     //ajouter un client (1)
     public function addClient() {
-        $query = 'INSERT INTO `c3005_user` (`fisrtname`, `lastname`, `mail`, `address`, `phoneNumber`, `password`, `id_c3005_city`)
+        $query = 'INSERT INTO `c3005_user` (`firstname`, `lastname`, `mail`, `address`, `phoneNumber`, `password`, `id_c3005_city`)
                   VALUES (:firstname, :lastname,  :mail, :address, :phoneNumber, :password, :id_c3005_city);';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -52,6 +52,17 @@ class client {
      */
     function getHashFromUser() {
         $query = 'SELECT `password` FROM `c3005_user` WHERE `mail` = :mail';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $result->execute();
+        return $result->fetch(PDO::FETCH_OBJ);
+    }
+        /**
+     * Méthode qui récupère les infos utiles de l'utilisateur après sa connection
+     * @return type
+     */
+    function getUserInfo() {
+        $query = 'SELECT * FROM `c3005_user` WHERE `mail` = :mail';
         $result = $this->db->prepare($query);
         $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $result->execute();

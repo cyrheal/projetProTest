@@ -1,4 +1,7 @@
-<!-- OK -->
+<?php
+session_start();
+include '../controller/headerController.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -23,43 +26,27 @@
                     <a class="nav-item nav-link" href="prestation.php">Prestations et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
                     <a class="nav-item nav-link" href="appointment.php">Prendre RDV</a>
                     <a class="nav-item nav-link" href="organizer.php">Agenda</a>
-                    <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
-                    <a class="nav-item nav-link" href="register.php">S'inscrire</a>
-                    <a class="nav-item nav-link" href="login.php">Connexion</a>
+                    <ul class="navbar-nav mr-auto">
+                        <?php var_dump($_SESSION); if (isset($_SESSION['isConnect'])) { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"><?= $_SESSION['firstname']; ?></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="?action=deconnexion">Déconnexion</a>
+                                </div>
+                            </li>
+                        </ul>
+                    <?php } else { ?>
+                        <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
+                        <a class="nav-item nav-link" href="register.php">S'inscrire</a>
+                        <a class="nav-item nav-link" href="login.php">Connexion</a>
+                    <?php } ?>
                     <a class="nav-item nav-link" href="admin.php">Administrateur</a>
                 </div>
             </div>
         </nav>  
-        <div class="modal" id="connection" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" id="modalStyle">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Connexion</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Adresse mail</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse mail">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Mot de passe</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Connexion</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                        <!--                        <button type="button" class="btn btn-primary">Connexion</button>-->
-                        <p>Pas encore inscrit ? <a class="btn btn-info" href="register.php">S'inscrire</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container-fluid">
             <div class="col-md-12 col-lg-12 col-xl-12 "><!--home est include dans index entre le header et le footer-->
                 <div class="row">
