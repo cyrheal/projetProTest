@@ -25,7 +25,7 @@
                     <a class="nav-item nav-link" href="organizer.php">Agenda</a>
                     <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
                     <a class="nav-item nav-link" href="register.php">S'inscrire</a>
-                    <a class="nav-item nav-link" data-toggle="modal" data-target="#connection">Connexion</a>
+                    <a class="nav-item nav-link" href="login.php">Connexion</a>
                     <a class="nav-item nav-link" href="admin.php">Administrateur</a>
                 </div>
             </div>

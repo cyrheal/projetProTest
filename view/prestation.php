@@ -2,7 +2,7 @@
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-<div class="col-md-12 col-lg-9 col-xl-9 mainContent"><!--couleur colonne droite-->
+<div class="col-md-9 mainContent"><!--couleur colonne droite-->
 
     <!--     remettre des col avec un offset md-1 col-md-8  pour retirer ml-3 mt5 et changer le ccs de performancetable -->
 

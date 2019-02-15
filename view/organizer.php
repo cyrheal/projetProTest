@@ -19,7 +19,7 @@ $currentDay = 1;
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-<div class="col-md-12 col-lg-9 col-xl-9 mainContent"><!--couleur colonne droite-->
+<div class="col-md-9 mainContent"><!--couleur colonne droite-->
     <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
         <h3>Agenda</h3>
         <form class="form-group" name="form" method="POST" action="view/organizer.php" enctype="multipart/form-data"><!--mettre agenda.php a action-->

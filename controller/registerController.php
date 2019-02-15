@@ -1,12 +1,20 @@
 <?php
+
+$client = new client();
+$password = '';
+$id_c3005_city = '';
 $address = '';
 $phoneNumber = '';
-//Déclaration regex numéro de téléphone
+//méthode
+$cityList = $client->getCityList();
+//regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
-//Déclaration regex nom et prénom
-$regexName = "/^[a-zA-Z\- ]+$/";
-//Déclaration regex date
-$regexAddress = "/^[a-zA-Z\- ]+$/";
+//regex nom et prénom
+$regexName = '/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
+//regex date adresse
+$regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
+//regex ville
+$regexCity = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
 $formError = array();
 $isSuccess = FALSE;
 $isError = FALSE;
@@ -55,33 +63,22 @@ if (isset($_POST['submit'])) {
         }
     }
 //adresse mail
-    // Si mail ne respecte pas le filter_var alors je stock un message d'erreur
-    // dont mon tableau formError
-    //Emploi de la fonction PHP Filter_var pour valider l'adresse Email.
-    if (isset($_POST['mail'])) {
-        if (!empty($_POST['mail'])) {
-            if (FILTER_VAR($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+    //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
+    if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
+        if ($_POST['mail'] == $_POST['confirmMail']) {
+            if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
                 $mail = htmlspecialchars($_POST['mail']);
             } else {
-                $formError['mail'] = 'Votre mail est  invalide.';
+                $formError['mail'] = 'Le courriel n\'est pas valide';
             }
         } else {
-            $formError['mail'] = 'Erreur,merci de remplir le champ adresse mail.';
+            $formError['mail'] = 'Les courriels ne sont pas identiques';
         }
+    } else {
+        $formError['mail'] = 'Veuillez renseigner un courriel';
+        $formError['confirmMail'] = 'Veuillez confirmer le courriel';
     }
-//    comfirmation mail
-    if (isset($_POST['confirmMail'])) {
-        if (!empty($_POST['confirmMail'])) {
-            if (FILTER_VAR($_POST['confirmMail'], FILTER_VALIDATE_EMAIL)) {
-                $confirmMail = htmlspecialchars($_POST['mail']);
-            } else {
-                $formError['confirmMail'] = 'Votre confirmation mail est invalide.';
-            }
-        } else {
-            $formError['confirmMail'] = 'Erreur,merci de remplir le champ confirmation adresse mail.';
-        }
-    }
-//    adresse
+//    adresse postale
     if (isset($_POST['address'])) {
         if (!empty($_POST['address'])) {
             if (preg_match($regexAddress, $_POST['address'])) {
@@ -93,8 +90,29 @@ if (isset($_POST['submit'])) {
             $formError['address'] = 'Erreur,merci de remplir le champ adresse.';
         }
     }
+    //On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. On le hash avant de le mettre en base de données. 
+    if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
+        if ($_POST['password'] == $_POST['confirmPassword']) {
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        } else {
+            $formError['password'] = 'Les mots de passe ne sont pas identiques';
+        }
+    } else {
+        $formError['password'] = 'Veuillez renseigner un mot de passe';
+        $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
+    }
+    if (isset($_POST['city'])) {
+        if (!empty($_POST['city'])) {
+            if (preg_match($regexCity, $_POST['city'])) {
+                $id_c3005_city = htmlspecialchars($_POST['city']);
+            } else {
+                $formError['city'] = 'Votre ville est  invalide.';
+            }
+        } else {
+            $formError['city'] = 'Erreur,merci de remplir le champ ville.';
+        }
+    }
 //fin vérification du formulaire
-
     if (count($formError) == 0) {
 //Instenciation de l'objet patients. 
 //$patients devient une instance de la classe patients.
@@ -106,10 +124,9 @@ if (isset($_POST['submit'])) {
         $client->mail = $mail;
         $client->address = $address;
         $client->phoneNumber = $phoneNumber;
-        $client->password = $phoneNumber;
-        $client->addClient();
+        $client->password = $password;
+        $client->id_c3005_city = $id_c3005_city;
         if ($client->addClient()) {
-
             $isSuccess = TRUE;
         } else {
             $isError = TRUE;

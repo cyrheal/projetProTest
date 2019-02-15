@@ -39,7 +39,7 @@ $(document).ready(function () {
             $currentImg = $img.eq(i);
             $currentImg.css('display', 'block');
             slideImg(); // on oublie pas de relancer la fonction à la fin
-        }, 6000); // on définit l'intervalle à 6000 millisecondes (7s)
+        }, 8000); // on définit l'intervalle à 8000 millisecondes (8s)
     }
     slideImg(); // enfin, on lance la fonction une première fois
 });

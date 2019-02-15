@@ -7,7 +7,7 @@ include '../controller/registerController.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-<div class="col-md-12 col-lg-9 mainContent"><!--couleur colonne droite-->
+<div class="col-md-9 mainContent"><!--couleur colonne droite-->
     <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
         <p>Formulaire d'inscription</p>
         <form method="POST" action="register.php">
@@ -58,19 +58,24 @@ include 'sidebar.php';
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="city">Ville</label>
-                    <select name="city" id="inputState" class="form-control">
-                        <option selected>Choisir...</option>
-                        <option>...</option>
-                    </select>
-                    <p class="text-danger"> <?= isset($formError['city']) ? $formError['city'] : '' ?> </p>
-                </div>
-                <div class="form-group col-md-4">
                     <label for="zipcode">Code postale</label>
                     <select name="zipcode" id="inputState" class="form-control">
-                        <option selected>Choisir...</option>
-                        <option>...</option>
+                        <option selected disabled="">Choisir...</option>
+                        <?php foreach ($cityList as $city) { ?>
+                            <option value="<?= $city->id ?>"><?= $city->zipcode ?></option>
+                        <?php } ?>
                     </select>
+                    <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="city">Ville</label>
+                    <select name="city" id="city" class="form-control">
+                        <option selected disabled="">Choisir...</option>
+                        <?php foreach ($cityList as $city) { ?>
+                            <option value="<?= $city->id ?>"><?= $city->city ?></option>
+                        <?php } ?>
+                    </select>
+                    <p class="text-danger"> <?= isset($formError['city']) ? $formError['city'] : '' ?> </p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="phoneNumber">Téléphone</label>
@@ -78,10 +83,11 @@ include 'sidebar.php';
                     <p class="text-danger"> <?= isset($formError['phoneNumber']) ? $formError['phoneNumber'] : '' ?> </p>
                 </div>
             </div>
-             <input class="btn btn-info" type="submit" value="S'enregitrer" name='submit' />
+            <input class="btn btn-info" type="submit" value="S'enregitrer" name='submit' />
         </form>
     </div>
 </div>
 <?php
 include '../template/footer.php';
 ?>
+

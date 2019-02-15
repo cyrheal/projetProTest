@@ -2,7 +2,7 @@
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-<div class="col-md-12 col-lg-9 col-xl-9 mainContent"><!--contenu principal, couleur colonne droite-->
+<div class="col-md-9 mainContent"><!--contenu principal, couleur colonne droite-->
     <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
         <h3>Conseil</h3>
 
