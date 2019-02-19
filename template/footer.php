@@ -6,8 +6,10 @@
 </div><!-- /row -->
 </div><!-- /col-md-12 -->
 </div> <!-- / container-fluid -->
-<script defer src="../assets/js/jquery-3.3.1.js"></script><!--en premier-->
-<script defer src="../assets/bootstrap/js/bootstrap.js"></script><!--  defer rapidité execution = fonction asynchrone-->
 <script defer src="../assets/js/carousel.js"></script><!--  defer rapidité execution = fonction asynchrone-->
+<script src="../assets/MDB-Free_4.7.0/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="../assets/MDB-Free_4.7.0/js/popper.min.js" type="text/javascript"></script>
+<script src="../assets/MDB-Free_4.7.0/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/MDB-Free_4.7.0/js/mdb.js" type="text/javascript"></script>
 </body>
 </html>

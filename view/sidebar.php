@@ -24,8 +24,8 @@
             <img class="carouselImg" src="../assets/img/nail/nail32.jpg" />
             <img class="carouselImg" src="../assets/img/nail/nail33.jpg" />
             <div class="controls text-center mt-2">
-                <button class="prev btn buttonCarousel">Precedent</button>
-                <button class="next btn buttonCarousel">Suivant</button>
+                <button class="prev buttonCarousel">Precedent</button>
+                <button class="next buttonCarousel">Suivant</button>
             </div>
         </div>
     </div>

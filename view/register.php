@@ -3,6 +3,7 @@ var_dump($_POST);
 ?>
 <?php
 include '../model/client.php';
+include '../model/city.php';
 include '../controller/registerController.php';
 include '../template/header.php';
 include 'sidebar.php';
@@ -11,7 +12,16 @@ include 'sidebar.php';
     <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
         <p>Formulaire d'inscription</p>
         <form method="POST" action="register.php">
-            <!--             changer les id type label...-->
+            <?php if ($isSuccess) { ?>
+                <p class="text-success">Votre inscription a bien été prise en compte</p>
+                <?php
+            }
+            if ($isError) {
+                ?>
+                <p class="text-danger">Désolé, votre inscriptionn'a pu être enregistré !</p>
+                <?php
+            }
+            ?>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="lastname">Nom</label>
@@ -27,25 +37,25 @@ include 'sidebar.php';
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="mail">Email</label>
+                    <label for="mail">Mail</label>
                     <input name="mail" type="email" class="form-control" id="mail" placeholder="Adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['mail']) ? $formError['mail'] : '' ?> </p>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="confirmMail">Confirme adresse mail</label>
-                    <input name="confirmMail"type="email" class="form-control" id="confirmMail" placeholder="Confirme adresse mail" value="<?= isset($confirmMail) ? $confirmMail : '' ?>" />
+                    <label for="confirmMail">Confirmer adresse mail</label>
+                    <input name="confirmMail"type="email" class="form-control" id="confirmMail" placeholder="Confirmer adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['confirmMail']) ? $formError['confirmMail'] : '' ?> </p>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="password">Mot de passe</label>
-                    <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe" value="<?= isset($password) ? $password : '' ?>" />
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe" value="" />
                     <p class="text-danger"> <?= isset($formError['password']) ? $formError['password'] : '' ?> </p>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="confirmPassword">Confirme mot de passe</label>
-                    <input name="confirmPassword"type="password" class="form-control" id="confirmPassword" placeholder="Confirme mot de passe" value="<?= isset($confirmPassword) ? $confirmPassword : '' ?>" />
+                    <label for="confirmPassword">Confirmer mot de passe</label>
+                    <input name="confirmPassword"type="password" class="form-control" id="confirmPassword" placeholder="Confirmer mot de passe" value="" />
                     <p class="text-danger"> <?= isset($formError['confirmPassword']) ? $formError['confirmPassword'] : '' ?> </p>
                 </div>
             </div>
@@ -59,7 +69,7 @@ include 'sidebar.php';
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="zipcode">Code postale</label>
-                    <select name="zipcode" id="inputState" class="form-control">
+                    <select name="zipcode" id="idZipcode" class="form-control">
                         <option selected disabled="">Choisir...</option>
                         <?php foreach ($cityList as $city) { ?>
                             <option value="<?= $city->id ?>"><?= $city->zipcode ?></option>
@@ -69,7 +79,7 @@ include 'sidebar.php';
                 </div>
                 <div class="form-group col-md-4">
                     <label for="city">Ville</label>
-                    <select name="city" id="city" class="form-control">
+                    <select name="city" id="idCity" class="form-control">
                         <option selected disabled="">Choisir...</option>
                         <?php foreach ($cityList as $city) { ?>
                             <option value="<?= $city->id ?>"><?= $city->city ?></option>

@@ -28,11 +28,16 @@ if (isset($_POST['login'])) {
             $isConnect = password_verify($password, $hash->password);
             //l'utilisateur est connecté
             if ($isConnect) {
-                $clientInfo = $client->getUserInfo();
+                $clientInfo = $client->getProfilclient();
                 session_start();
+                $_SESSION['id'] = $clientInfo->id;
                 $_SESSION['firstname'] = $clientInfo->firstname;
                 $_SESSION['lastname'] = $clientInfo->lastname;
                 $_SESSION['mail'] = $clientInfo->mail;
+                $_SESSION['id_c3005_role'] = $clientInfo->id_c3005_role;
+                $_SESSION['id_c3005_city'] = $clientInfo->id_c3005_city;
+                $_SESSION['city'] = $clientInfo->city;
+                $_SESSION['zipcode'] = $clientInfo->zipcode;
                 $_SESSION['address'] = $clientInfo->address;
                 $_SESSION['phoneNumber'] = $clientInfo->phoneNumber;
                 $_SESSION['loyaltyPoint'] = $clientInfo->loyaltyPoint;

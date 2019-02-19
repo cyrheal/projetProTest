@@ -7,7 +7,8 @@ include '../controller/headerController.php';
     <head>
         <meta charset="utf-8" />
         <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
-        <link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="../assets/MDB-Free_4.7.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/MDB-Free_4.7.0/css/mdb.min.css" rel="stylesheet" type="text/css"/>
         <title>Jessica Nails Beauty</title>
     </head>
     <body>
@@ -27,7 +28,7 @@ include '../controller/headerController.php';
                     <a class="nav-item nav-link" href="appointment.php">Prendre RDV</a>
                     <a class="nav-item nav-link" href="organizer.php">Agenda</a>
                     <ul class="navbar-nav mr-auto">
-                        <?php var_dump($_SESSION); if (isset($_SESSION['isConnect'])) { ?>
+                        <?php if (isset($_SESSION['isConnect']) && ((($_SESSION['id_c3005_role']) == 1 ) || ($_SESSION['id_c3005_role'] == 2))) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"><?= $_SESSION['firstname']; ?></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,12 +39,15 @@ include '../controller/headerController.php';
                                 </div>
                             </li>
                         </ul>
-                    <?php } else { ?>
                         <a class="nav-item nav-link" href="account.php">Mon compte</a><!--à changer si dossier renomer-->
+                    <?php } else { ?>
                         <a class="nav-item nav-link" href="register.php">S'inscrire</a>
                         <a class="nav-item nav-link" href="login.php">Connexion</a>
                     <?php } ?>
-                    <a class="nav-item nav-link" href="admin.php">Administrateur</a>
+                    <?php if (isset($_SESSION['isConnect']) && (($_SESSION['id_c3005_role']) == 1 )) { ?>
+                        <a class="nav-item nav-link" href="admin.php">Administrateur</a>
+                    <?php }
+                    ?>
                 </div>
             </div>
         </nav>  

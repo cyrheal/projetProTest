@@ -1,5 +1,6 @@
 <?php
 include '../model/client.php';
+include '../model/city.php';
 include '../controller/loginController.php';
 include '../template/header.php';
 include 'sidebar.php';
