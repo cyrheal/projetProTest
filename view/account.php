@@ -35,6 +35,7 @@ include 'sidebar.php';
                             <td><?= $_SESSION['loyaltyPoint'] ?></td>
                         </tr>
                     </tbody>
+                     
                 </table>  
             </div>
             <div class="col-md-9 mainContent"><!--contenu principal, couleur colonne droite-->
@@ -90,9 +91,9 @@ include 'sidebar.php';
                             <div class="form-group col-md-4">
                                 <label for="zipcode">Code postale</label>
                                 <select name="zipcode" id="inputState" class="form-control">
-                                    <option selected disabled="">Choisir...</option>
-                                    <?php foreach ($cityList as $city) { ?>
-                                        <option value="<?= $city->id ?>"><?= $city->zipcode ?></option>
+                                   
+                                    <?php foreach ($zipcodeList as $zipCode) { ?>
+                                    <option value="<?= $zipCode->zipcode ?>" <?php if ($_SESSION['zipcode'] == $zipCode->zipcode){ ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
                                     <?php } ?>
                                 </select>
                                 <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>
@@ -101,9 +102,9 @@ include 'sidebar.php';
                                 <label for="city">Ville</label>
           <!--     mettre du terner pour que le selected reste-->
                                 <select name="city" id="city" class="form-control">
-                                    <option selected disabled="">Choisir...</option>
+                                   
                                     <?php foreach ($cityList as $city) { ?>
-                                        <option value="<?= $city->id ?>"><?= $city->city ?></option>
+                                        <option value="<?= $city->zipcode ?>" <?php if ($_SESSION['city'] == $city->city){ ?> selected <?php } ?>><?= $city->city ?></option>
                                     <?php } ?>
                                 </select>
                                 <p class="text-danger"> <?= isset($formError['city']) ? $formError['city'] : '' ?> </p>
@@ -115,8 +116,10 @@ include 'sidebar.php';
                             </div>
                         </div>
                         <input class="btn btn-info" type="submit" value="Changer mes coordonnées" name='submit' />
+                        <p class="text-danger"> <?= isset($formError['modify']) ? $formError['modify'] : '' ?> </p>
+                       <button class="btn btn-danger" name="deleteSubmit" type="submit">Supprimer</button>
                     </form>
-                    <a class="btn btn-danger" href="account.php?id=<?= $client->id ?>">Supprimer</a>
+                    <a class="btn blue-gradient btn-lg btn-block" href="account.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a>
                 </div>
             </div>
             <?php

@@ -1,11 +1,37 @@
 <?php
+
+session_start();
 $client = new client();
+$city = new city();
+////if (!empty($_GET['id'])) {
+//    $client->id = htmlspecialchars($_GET['id']);
+//    if ($client->deleteClientById()) {
+//        $isDelete = TRUE;
+//    }
+//}
+//vincent
+$isDelete = FALSE;
+if (!empty($_GET['idDelete'])) {
+    $client->id = htmlspecialchars($_GET['idDelete']);
+    if ($client->deleteClientById()) {
+        $isDelete = TRUE;
+    }
+}
+//bertrand
+var_dump($_SESSION);
+if (isset($_POST['deleteSubmit'])) {
+    $client = new client();
+    $client->id = htmlspecialchars($_SESSION['id']);
+    $client->deleteClientById();
+    session_destroy();
+    header('Location:index.php');
+}
+
 //méthode pour les menu déroulant
-$cityList = $client->getCityList();
+$cityList = $city->getCityList();
+$zipcodeList = $city->getZipcodeList();
 //méthode pour afficher les client
-$infoClient = $client->getProfilclient();
-
-
+//$infoClient = $client->getProfilclient();
 //regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom
@@ -19,12 +45,7 @@ $isSuccess = FALSE;
 $isError = FALSE;
 $isClient = FALSE;
 $isDelete = FALSE;
-if (!empty($_GET['id'])) {
-    $client->id = htmlspecialchars($_GET['id']);
-    if ($client->deleteClientById()) {
-        $isDelete = TRUE;
-    }
-}
+
 //si le submit est isset
 if (isset($_POST['submit'])) {
     if (isset($_POST['lastname'])) {
@@ -108,16 +129,23 @@ if (isset($_POST['submit'])) {
         $formError['password'] = 'Veuillez renseigner un mot de passe';
         $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
     }
-    if (isset($_POST['city'])) {
-        if (!empty($_POST['city'])) {
+    //    verification ville et code postale
+    var_dump($_POST['city']);
+    var_dump($_POST['zipcode']);
+    if (!empty($_POST['city']) && !empty($_POST['zipcode'])) {
+        if ($_POST['city'] == $_POST['zipcode']) {
             if (preg_match($regexCity, $_POST['city'])) {
                 $id_c3005_city = htmlspecialchars($_POST['city']);
             } else {
-                $formError['city'] = 'Votre ville est  invalide.';
+                $formError['city'] = 'La ville n\'est pas valide';
             }
         } else {
-            $formError['city'] = 'Erreur,merci de remplir le champ ville.';
+            $formError['city'] = 'La ville n\'est pas compatible avec le code postale';
+            $formError['zipcode'] = 'Le code postale n\'est pas compatible avec la ville';
         }
+    } else {
+        $formError['city'] = 'Veuillez renseigner la ville';
+        $formError['zipcode'] = 'veuillez renseigner le code postale';
     }
 //fin vérification du formulaire
     if (count($formError) == 0) {
@@ -125,14 +153,32 @@ if (isset($_POST['submit'])) {
 //$patients devient une instance de la classe patients.
 //la methode magique construct est appelée automatiquement 
 //grace au mot clé new.
+      
+        $client->id = $_SESSION['id'];
         $client->firstname = $firstname;
         $client->lastname = $lastname;
         $client->mail = $mail;
         $client->address = $address;
         $client->phoneNumber = $phoneNumber;
         $client->password = $password;
+//        $client->city = $city;
+//        $client->zipcode = $zipcode;
         $client->id_c3005_city = $id_c3005_city;
-        $client->updateClient();
+        if ($client->updateClient()) {
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['mail'] = $mail;
+            $_SESSION['address'] = $address;
+            $_SESSION['phoneNumber'] = $phoneNumber;
+            $_SESSION['password'] = $password;
+            $_SESSION['id_c3005_city'] = $id_c3005_city;
+//            $_SESSION['city'] = $city;
+//            $_SESSION['zipcode'] = $zipcode;
+        } else {
+            $formError['modify'] = 'Votre modification à échouée';
+        var_dump($formError);
+        }
+
 //        if ($client->updateClient()) {
 //            $isSuccess = TRUE;
 //        } else {
@@ -140,5 +186,6 @@ if (isset($_POST['submit'])) {
 //        }
     }
 }
+
 
 

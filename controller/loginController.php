@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
             if ($isConnect) {
                 $clientInfo = $client->getProfilclient();
                 session_start();
-                $_SESSION['id'] = $clientInfo->id;
+                $_SESSION['id'] = $clientInfo->idUser;
                 $_SESSION['firstname'] = $clientInfo->firstname;
                 $_SESSION['lastname'] = $clientInfo->lastname;
                 $_SESSION['mail'] = $clientInfo->mail;
