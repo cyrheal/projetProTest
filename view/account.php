@@ -1,13 +1,13 @@
 <?php
+include '../template/header.php';
 include '../model/client.php';
 include '../model/city.php';
 include '../controller/accountController.php';
-include '../template/header.php';
 include 'sidebar.php';
 ?>
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
     <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
-        <?php if (isset($_SESSION['isConnect'])) { 
+        <?php if (isset($_SESSION['isConnect'])) {
             ?>
             <p>Informations personnelles :</p>
             <div class="table-responsive">
@@ -35,7 +35,7 @@ include 'sidebar.php';
                             <td><?= $_SESSION['loyaltyPoint'] ?></td>
                         </tr>
                     </tbody>
-                     
+
                 </table>  
             </div>
             <div class="col-md-9 mainContent"><!--contenu principal, couleur colonne droite-->
@@ -91,20 +91,17 @@ include 'sidebar.php';
                             <div class="form-group col-md-4">
                                 <label for="zipcode">Code postale</label>
                                 <select name="zipcode" id="inputState" class="form-control">
-                                   
                                     <?php foreach ($zipcodeList as $zipCode) { ?>
-                                    <option value="<?= $zipCode->zipcode ?>" <?php if ($_SESSION['zipcode'] == $zipCode->zipcode){ ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
+                                        <option <?php if ($_SESSION['zipcode'] == $zipCode->zipcode) { ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
                                     <?php } ?>
                                 </select>
                                 <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="city">Ville</label>
-          <!--     mettre du terner pour que le selected reste-->
                                 <select name="city" id="city" class="form-control">
-                                   
                                     <?php foreach ($cityList as $city) { ?>
-                                        <option value="<?= $city->zipcode ?>" <?php if ($_SESSION['city'] == $city->city){ ?> selected <?php } ?>><?= $city->city ?></option>
+                                        <option value="<?= $city->id ?>" <?php if ($_SESSION['city'] == $city->city) { ?> selected <?php } ?>><?= $city->city ?></option>
                                     <?php } ?>
                                 </select>
                                 <p class="text-danger"> <?= isset($formError['city']) ? $formError['city'] : '' ?> </p>
@@ -117,7 +114,7 @@ include 'sidebar.php';
                         </div>
                         <input class="btn btn-info" type="submit" value="Changer mes coordonnées" name='submit' />
                         <p class="text-danger"> <?= isset($formError['modify']) ? $formError['modify'] : '' ?> </p>
-                       <button class="btn btn-danger" name="deleteSubmit" type="submit">Supprimer</button>
+                        <button class="btn btn-danger" name="deleteSubmit" type="submit">Supprimer</button>
                     </form>
                     <a class="btn blue-gradient btn-lg btn-block" href="account.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a>
                 </div>

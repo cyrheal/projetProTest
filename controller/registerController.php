@@ -1,6 +1,7 @@
 <?php
 
 $client = new client();
+$cityL = new city();
 $password = '';
 $id_c3005_city = '';
 $address = '';
@@ -8,7 +9,9 @@ $phoneNumber = '';
 $zipcode = '';
 $city = '';
 //méthode
-$cityList = $client->getCityList();
+$cityList = $cityL->getCityList();
+$zipcodeList = $cityL->getZipcodeList();
+
 //regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom
@@ -104,17 +107,17 @@ if (isset($_POST['submit'])) {
         $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
     }
 //    verification ville et code postale
-    if (!empty($_POST['city']) && !empty($_POST['zipcode'])) {
-        if ($_POST['city'] == $_POST['zipcode']) {
-            if (preg_match($regexCity, $_POST['city'])) {
+    if (!empty($_POST['city'])) {
+//        if ($_POST['city'] == $_POST['zipcode']) {
+//            if (preg_match($regexCity, $_POST['city'])) {
                 $id_c3005_city = htmlspecialchars($_POST['city']);
-            } else {
-                $formError['city'] = 'La ville n\'est pas valide';
-            }
-        } else {
-            $formError['city'] = 'La ville n\'est pas compatible avec le code postale';
-            $formError['zipcode'] = 'Le code postale n\'est pas compatible avec la ville';
-        }
+//            } else {
+//                $formError['city'] = 'La ville n\'est pas valide';
+//            }
+//        } else {
+//            $formError['city'] = 'La ville n\'est pas compatible avec le code postale';
+//            $formError['zipcode'] = 'Le code postale n\'est pas compatible avec la ville';
+//        }
     } else {
         $formError['city'] = 'Veuillez renseigner la ville';
         $formError['zipcode'] = 'veuillez renseigner le code postale';

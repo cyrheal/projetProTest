@@ -2,10 +2,11 @@
 var_dump($_POST);
 ?>
 <?php
-include '../model/client.php';
-include '../model/city.php';
-include '../controller/registerController.php';
 include '../template/header.php';
+include '../model/city.php';
+include '../model/client.php';
+include '../controller/registerController.php';
+
 include 'sidebar.php';
 ?>
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
@@ -71,8 +72,8 @@ include 'sidebar.php';
                     <label for="zipcode">Code postale</label>
                     <select name="zipcode" id="idZipcode" class="form-control">
                         <option selected disabled="">Choisir...</option>
-                        <?php foreach ($cityList as $city) { ?>
-                            <option value="<?= $city->id ?>"><?= $city->zipcode ?></option>
+                        <?php foreach ($zipcodeList as $city) { ?>
+                            <option><?= $city->zipcode ?></option>
                         <?php } ?>
                     </select>
                     <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>

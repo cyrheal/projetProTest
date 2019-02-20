@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $client = new client();
 $formError = array();
 $mail = '';
