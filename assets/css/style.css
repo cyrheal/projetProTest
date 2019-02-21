@@ -43,6 +43,7 @@ header h1 {
 .mainContent{
     background-color: #f9a098;
 }
+/******* BODY *******/
 /*** TABLEAU PRESTATION ***/
 .performanceTable {
     border: 3px solid #9fc9f9;
@@ -87,7 +88,7 @@ header h1 {
     background-color: #fac1c8;
 }
 /*** formulaire ***/
-.result{
+/*.result{
     background-color: #bfbfbf;
     border: 2px solid black;
     border-radius: 10px;
@@ -100,7 +101,7 @@ header h1 {
     border-radius: 10px;
     padding: 6px;
     margin: 20px;
-}
+}*/
 /*** calendrier ***/
 .calendarTable{
     width: 60%;

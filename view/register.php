@@ -72,8 +72,8 @@ include 'sidebar.php';
                     <label for="zipcode">Code postale</label>
                     <select name="zipcode" id="idZipcode" class="form-control">
                         <option selected disabled="">Choisir...</option>
-                        <?php foreach ($zipcodeList as $city) { ?>
-                            <option><?= $city->zipcode ?></option>
+                        <?php foreach ($zipcodeList as $zipcode) { ?>
+                            <option><?= $zipcode->zipcode ?></option>
                         <?php } ?>
                     </select>
                     <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>

@@ -21,7 +21,7 @@ class client {
             $ex->getMessage();
         }
     }
-
+/******************************CRUD CLIENT**********************/
     /**
      * Ajouter un client (1)
      * @return type
@@ -51,7 +51,7 @@ class client {
      * @return type
      */
     public function getProfilclient() {
-        $query = 'SELECT c3005_user.`id` AS idUser, `id_c3005_role`, `firstname`, `lastname`, `mail`, `phoneNumber`, `address`, `city`, `zipcode`, `loyaltyPoint` FROM `c3005_user` LEFT JOIN `c3005_city` ON `c3005_city`.`id` = `c3005_user`.`id_c3005_city` WHERE `c3005_user`.`mail`=:mail';
+        $query = 'SELECT c3005_user.`id` AS `idUser`, `id_c3005_role`, `firstname`, `lastname`, `mail`, `phoneNumber`, `address`, `city`, `zipcode`, `loyaltyPoint` FROM `c3005_user` LEFT JOIN `c3005_city` ON `c3005_city`.`id` = `c3005_user`.`id_c3005_city` WHERE `c3005_user`.`mail`=:mail';
         $result = $this->db->prepare($query);
         $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $result->execute();
@@ -87,7 +87,7 @@ class client {
         $result = $queryResult->execute();
         return $result;
     }
-    
+    /******************************CRUD CLIENT fin**********************/
     /**
      * Méthode qui retourne le hashage du mot de passe du compte sélectionné.
      * @return type
@@ -111,7 +111,18 @@ class client {
 //        $result->execute();
 //        return $result->fetch(PDO::FETCH_OBJ);
 //    }
-
+/******************************CRUD rendez-vous **********************/
+    
+     //affiche le nom et le prénom (2)
+    public function getClientList() {
+        //faut renomer birthDate avec le AS car le birthDate et entre parenthèse
+        $query = 'SELECT `id`, `lastname`, `firstname`, `phoneNumber`, `mail` FROM `c3005_user` ORDER BY `lastname`';
+        //permet d executer une requete sql this= $db 
+        $queryResult = $this->db->query($query);
+        //un tableau d'objets fecth(recherche) obj
+        return $queryResult->fetchAll(PDO::FETCH_OBJ);
+    }   
+    
 }
 
 ?>  

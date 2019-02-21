@@ -30,6 +30,7 @@ if (isset($_POST['login'])) {
             if ($isConnect) {
                 $clientInfo = $client->getProfilclient();
                 session_start();
+//     j'ai renomé dans la méthode getProfilclient() $_SESSION['id'] = $clientInfo->id en idUser, qui rentré en conflit avec l id de la ville
                 $_SESSION['id'] = $clientInfo->idUser;
                 $_SESSION['firstname'] = $clientInfo->firstname;
                 $_SESSION['lastname'] = $clientInfo->lastname;

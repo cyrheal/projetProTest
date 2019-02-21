@@ -1,17 +1,11 @@
 <?php
 
 $client = new client();
-$cityL = new city();
-$password = '';
-$id_c3005_city = '';
-$address = '';
-$phoneNumber = '';
-$zipcode = '';
-$city = '';
-//méthode
-$cityList = $cityL->getCityList();
-$zipcodeList = $cityL->getZipcodeList();
-
+$listCity = new city();
+//méthode pour la liste déroulante ville
+$cityList = $listCity->getCityList();
+//méthode pour la liste déroulante code postale
+$zipcodeList = $listCity->getZipcodeList();
 //regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom
@@ -107,28 +101,16 @@ if (isset($_POST['submit'])) {
         $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
     }
 //    verification ville et code postale
-    if (!empty($_POST['city'])) {
-//        if ($_POST['city'] == $_POST['zipcode']) {
-//            if (preg_match($regexCity, $_POST['city'])) {
-                $id_c3005_city = htmlspecialchars($_POST['city']);
-//            } else {
-//                $formError['city'] = 'La ville n\'est pas valide';
-//            }
-//        } else {
-//            $formError['city'] = 'La ville n\'est pas compatible avec le code postale';
-//            $formError['zipcode'] = 'Le code postale n\'est pas compatible avec la ville';
-//        }
+    if (!empty($_POST['city']) && (!empty($_POST['zipcode']))) {
+        $id_c3005_city = htmlspecialchars($_POST['city']);
     } else {
         $formError['city'] = 'Veuillez renseigner la ville';
         $formError['zipcode'] = 'veuillez renseigner le code postale';
     }
-
+   
 //fin vérification du formulaire
     if (count($formError) == 0) {
-//Instenciation de l'objet patients. 
-//$patients devient une instance de la classe patients.
-//la methode magique construct est appelée automatiquement 
-//grace au mot clé new.
+//Si le compteur erreur est à 0 on instencie l'objet $client qui devient une instance de la classe client.     
         $client = new client();
         $client->lastname = $lastname;
         $client->firstname = $firstname;
@@ -137,8 +119,6 @@ if (isset($_POST['submit'])) {
         $client->phoneNumber = $phoneNumber;
         $client->password = $password;
         $client->id_c3005_city = $id_c3005_city;
-        $client->city = $city;
-        $client->zipcode = $zipcode;
         if ($client->addClient()) {
             $isSuccess = TRUE;
         } else {
