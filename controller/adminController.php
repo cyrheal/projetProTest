@@ -1,5 +1,19 @@
 <?php
 
+
+//    méthode lire info rendez-vous et supprimer
+    $appointmentList = new appointment();
+    $listAppointment = $appointmentList->getAppointmentsList();
+    
+//on appel la méthode grâce a $appointments qui se trouve dans ma classe et qui me retourne un tableau stocké dans $appointmentsList
+//    $isDelete = FALSE;
+//    if (!empty($_GET['idDelete'])) {
+//        $appointments->id = htmlspecialchars($_GET['idDelete']);
+//        if ($appointments->deleteAppointmentById()) {
+//            $isDelete = TRUE;
+//        }
+//    }
+    
 $client = new client();
 //on appel la méthode grâce a $patients qui se trouve dans ma classe et qui me retourne un tableau stocké dans $patientsList
 $clientList = $client->getClientList();
@@ -23,7 +37,7 @@ if (isset($_POST['submit'])) {
         $formError['client'] = 'Veuillez selectioner un patient';
     }
 //menu déroulant prestation
-        if (isset($_POST['idPerformance'])) {
+    if (isset($_POST['idPerformance'])) {
         $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
     } else {
         $formError['performance'] = 'Veuillez selectioner une prestation';
@@ -66,4 +80,7 @@ if (isset($_POST['submit'])) {
             $formError['checkAppointment'] = 'Le devellopeur est en pause';
         }
     }
+    
+
+    
 }

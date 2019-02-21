@@ -62,13 +62,16 @@ include 'sidebar.php';
                         <th>Prénom</th>
                         <th>Date</th>
                         <th>Heure</th>
+                        <th>Descriptive</th>
+                        <th>Price</th>
                         <th>Profil</th>
                         <th>Supprimer</th>
+                        <th>Effacer</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- un tableau d objet-->
-                    <?php foreach ($listAppointments AS $appointments) { ?>
+                    <?php foreach ($listAppointment AS $appointments) { ?>
                         <tr>   
                             <td><?= $appointments->id ?></td>
                             <td><?= $appointments->lastname ?></td>
@@ -76,6 +79,7 @@ include 'sidebar.php';
                             <td><?= $appointments->date ?></td>
                             <td><?= $appointments->hour ?></td>
                             <td><?= $appointments->descriptive ?></td>
+                            <td><?= $appointments->price ?></td>
                             <td><a href="rendezvous.php?id=<?= $appointments->id ?>"><input type="button" value="voir profil"></a></td>
                             <td><a class="btn btn-danger" href="liste-rendezvous.php?idDelete=<?= $appointments->id ?>">Supprimer</a></td>
                             <td><a class="btn blue-gradient btn-lg btn-block" href="admin.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a></td>
