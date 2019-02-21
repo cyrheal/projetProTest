@@ -53,7 +53,9 @@ include 'sidebar.php';
         <!--        fin formulaire pour ajouer un rendez-vous-->
 
         <!--début formulaire pour lire un rendez-vous-->
-        <div class="table-responsive">
+        
+        <div class="table-responsive mt-5">
+            <p>Liste des rendez-vous :</p>
             <table class="table">
                 <thead>
                     <tr>
@@ -80,9 +82,10 @@ include 'sidebar.php';
                             <td><?= $appointments->hour ?></td>
                             <td><?= $appointments->descriptive ?></td>
                             <td><?= $appointments->price ?></td>
-                            <td><a href="rendezvous.php?id=<?= $appointments->id ?>"><input type="button" value="voir profil"></a></td>
-                            <td><a class="btn btn-danger" href="liste-rendezvous.php?idDelete=<?= $appointments->id ?>">Supprimer</a></td>
-                            <td><a class="btn blue-gradient btn-lg btn-block" href="admin.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a></td>
+                            <td><a class="btn btn-primary" href=profileClient.php?id=<?= $appointments->id ?>">Voir Profil</a></td>
+<!--                            changer link -->
+                            <td><a class="btn btn-danger" href="liste-rendezvous.php?idDelete=<?= $appointments->id ?>">Supprimer</a></td> 
+                            <td><a class="btn blue-gradient btn-lg btn-block" href="admin.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a></td> 
                         </tr>
                     <?php } ?>
                 </tbody>

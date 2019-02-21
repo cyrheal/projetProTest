@@ -51,7 +51,7 @@ class client {
      * @return type
      */
     public function getProfilclient() {
-        $query = 'SELECT c3005_user.`id` AS `idUser`, `id_c3005_role`, `firstname`, `lastname`, `mail`, `phoneNumber`, `address`, `city`, `zipcode`, `loyaltyPoint` FROM `c3005_user` LEFT JOIN `c3005_city` ON `c3005_city`.`id` = `c3005_user`.`id_c3005_city` WHERE `c3005_user`.`mail`=:mail';
+        $query = 'SELECT c3005_user.`id` AS `idUser, `id_c3005_role`, `firstname`, `lastname`, `mail`, `phoneNumber`, `address`, `city`, `zipcode`, `loyaltyPoint` FROM `c3005_user` LEFT JOIN `c3005_city` ON `c3005_city`.`id` = `c3005_user`.`id_c3005_city` WHERE `c3005_user`.`mail`=:mail';
         $result = $this->db->prepare($query);
         $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $result->execute();
@@ -121,8 +121,31 @@ class client {
         $queryResult = $this->db->query($query);
         //un tableau d'objets fecth(recherche) obj
         return $queryResult->fetchAll(PDO::FETCH_OBJ);
-    }   
-    
+    }  
+        //affiche le profil du patient (3) changer la requete
+    public function getProfilClient() {
+        $return = FALSE;
+        $isOk = FALSE;
+        $query = 'SELECT `id`, `lastname`, `firstname`, DATE_FORMAT(`birthdate`, "%d/%m/%Y") AS `birthdate`, `phone`, `mail` FROM `c3005_user` WHERE `id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+//si la requete c'est bien executé alors on rempli $returnArray avec un objet         
+        if ($queryResult->execute()) {
+            $return = $queryResult->fetch(PDO::FETCH_OBJ);
+        }
+//si $return est un objet alors on hydrate       
+        if (is_object($return)) {
+            $this->lastname = $return->lastname;
+            $this->firstname = $return->firstname;
+            $this->birthdate = $return->birthdate;
+            $this->phone = $return->phone;
+            $this->id = $return->id;
+            $this->mail = $return->mail;
+            $isOk = TRUE;
+        }
+        return $isOk;
+    }
+//    fin profil client
 }
 
 ?>  
