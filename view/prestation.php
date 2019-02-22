@@ -1,7 +1,7 @@
 <?php
-include '../template/header.php';
-include '../model/performance.php';
+include '../configuration.php';
 include '../controller/prestationController.php';
+include '../template/header.php';
 include 'sidebar.php';
 ?>
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->

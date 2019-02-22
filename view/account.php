@@ -1,8 +1,8 @@
 <?php
-include '../template/header.php';
-include '../model/client.php';
-include '../model/city.php';
+
+include '../configuration.php';
 include '../controller/accountController.php';
+include '../template/header.php';
 include 'sidebar.php';
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $client = new client();
 $formError = array();
 $mail = '';
@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
             //l'utilisateur est connecté
             if ($isConnect) {
                 $clientInfo = $client->getProfilclient();
-                session_start();
+                var_dump($clientInfo);
 //     j'ai renomé dans la méthode getProfilclient() $_SESSION['id'] = $clientInfo->id en idUser, qui rentré en conflit avec l id de la ville
                 $_SESSION['id'] = $clientInfo->idUser;
                 $_SESSION['firstname'] = $clientInfo->firstname;

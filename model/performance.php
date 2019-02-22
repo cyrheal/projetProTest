@@ -1,18 +1,14 @@
 <?php
 
-class performance {
+class performance extends database {
 
     public $id;
     public $descriptive = '';
     public $price = '';
-    public $db;
+  
 
-    public function __construct() {
-        try {
-            $this->db = new PDO('mysql:host=jessicanailsbeauty;dbname=jessicanailsbeauty;charset=utf8', 'cyril', 'la198677');
-        } catch (Exception $ex) {
-            $ex->getMessage();
-        }
+function construct() {
+        parent::construct();
     }
     public function getPriceByPerformance() {
         //faut renomer birthDate avec le AS car le birthDate et entre parenthèse

@@ -1,8 +1,7 @@
-<?php
+<?php 
+include '../configuration.php';
+include '../controller/profileClientController.php';
 include '../template/header.php';
-include '../model/client.php';
-include '../model/city.php';
-include '../controller/accountController.php';
 include 'sidebar.php';
 ?>
 
@@ -13,9 +12,12 @@ include 'sidebar.php';
         <tr>
             <th>Nom</th>
             <th>Prénom</th>
-            <th>Date de naissance</th>
+            <th>Adresse</th>
+            <th>Code postale</th>
+            <th>Ville</th>
             <th>Téléphone</th>
-            <th>email</th>
+            <th>Mail</th>
+            <th>Point fidélité</th>
         </tr>
     </thead>
     <tbody>
@@ -24,11 +26,14 @@ include 'sidebar.php';
           
             <!-- un tableau d objet-->
             <tr>
-                <td><?= $client->lastname ?></td>
-                <td><?= $client->firstname ?></td>
-                <td><?= $client->birthdate ?></td>
-                <td><?= $client->phone ?></td>
-                <td><?= $client->mail ?></td>
+                <td><?= $isClient->lastname ?></td>
+                <td><?= $isClient->firstname ?></td>
+                <td><?= $isClient->address ?></td>
+                <td><?= $isClient->zipcode ?></td>
+                <td><?= $isClient->city ?></td>
+                <td><?= $isClient->phoneNumber ?></td>
+                <td><?= $isClient->mail ?></td>
+                <td><?= $isClient->loyaltyPoint ?></td>
             </tr>
         </tbody>
     </table>  

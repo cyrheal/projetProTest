@@ -1,4 +1,5 @@
 <?php
+
 include 'sidebar.php';
 ?>
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->

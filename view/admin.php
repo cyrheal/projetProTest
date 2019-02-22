@@ -1,9 +1,7 @@
 <?php
-include '../template/header.php';
-include '../model/client.php';
-include '../model/appointment.php';
-include '../model/performance.php';
+include '../configuration.php';
 include '../controller/adminController.php';
+include '../template/header.php';
 include 'sidebar.php';
 ?>
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
@@ -75,14 +73,14 @@ include 'sidebar.php';
                     <!-- un tableau d objet-->
                     <?php foreach ($listAppointment AS $appointments) { ?>
                         <tr>   
-                            <td><?= $appointments->id ?></td>
+                            <td><?= $appointments->idUser ?></td>
                             <td><?= $appointments->lastname ?></td>
                             <td><?= $appointments->firstname ?></td>
                             <td><?= $appointments->date ?></td>
                             <td><?= $appointments->hour ?></td>
                             <td><?= $appointments->descriptive ?></td>
                             <td><?= $appointments->price ?></td>
-                            <td><a class="btn btn-primary" href=profileClient.php?id=<?= $appointments->id ?>">Voir Profil</a></td>
+                            <td><a class="btn btn-primary" href="profileClient.php?id=<?= $appointments->idUser ?>">Voir Profil</a></td>
 <!--                            changer link -->
                             <td><a class="btn btn-danger" href="liste-rendezvous.php?idDelete=<?= $appointments->id ?>">Supprimer</a></td> 
                             <td><a class="btn blue-gradient btn-lg btn-block" href="admin.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a></td> 

@@ -2,10 +2,9 @@
 var_dump($_POST);
 ?>
 <?php
-include '../template/header.php';
-include '../model/city.php';
-include '../model/client.php';
+include '../configuration.php';
 include '../controller/registerController.php';
+include '../template/header.php';
 
 include 'sidebar.php';
 ?>

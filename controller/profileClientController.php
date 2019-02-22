@@ -1,10 +1,12 @@
 <?php
-$isPatient = false;
+//$isPatient = false;
 $client = new client();
+
 
 if (!empty($_GET['id'])) {
     $client->id = htmlspecialchars($_GET['id']);
-    $isClient = $client->getProfilClient();
+    $isClient = $client->getProfilClientAdmin();
+    var_dump($isClient);
 }
 //
 //$appointments = new appointments();

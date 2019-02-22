@@ -1,4 +1,5 @@
 <?php
+include '../configuration.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
