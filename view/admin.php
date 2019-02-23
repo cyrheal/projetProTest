@@ -51,13 +51,24 @@ include 'sidebar.php';
         <!--        fin formulaire pour ajouer un rendez-vous-->
 
         <!--début formulaire pour lire un rendez-vous-->
-        
+
         <div class="table-responsive mt-5">
             <p>Liste des rendez-vous :</p>
+            <?php if ($isDelete) { ?>
+                <p class="text-success">Votre rendez-vous a bien été supprimé</p>
+                <?php
+            }
+            if ($isNotDelete) {
+                ?>
+                <p class="text-danger">Désolé, votre rendez-vous n'a pu être supprimé !</p>
+                <?php
+            }
+            ?>
             <table class="table">
                 <thead>
                     <tr>
                         <th>id</th>
+                        <th>idA</th>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Date</th>
@@ -74,6 +85,7 @@ include 'sidebar.php';
                     <?php foreach ($listAppointment AS $appointments) { ?>
                         <tr>   
                             <td><?= $appointments->idUser ?></td>
+                            <td><?= $appointments->idAppointment ?></td>
                             <td><?= $appointments->lastname ?></td>
                             <td><?= $appointments->firstname ?></td>
                             <td><?= $appointments->date ?></td>
@@ -81,16 +93,20 @@ include 'sidebar.php';
                             <td><?= $appointments->descriptive ?></td>
                             <td><?= $appointments->price ?></td>
                             <td><a class="btn btn-primary" href="profileClient.php?id=<?= $appointments->idUser ?>">Voir Profil</a></td>
-<!--                            changer link -->
-                            <td><a class="btn btn-danger" href="liste-rendezvous.php?idDelete=<?= $appointments->id ?>">Supprimer</a></td> 
-                            <td><a class="btn blue-gradient btn-lg btn-block" href="admin.php?idDelete=<?= $_SESSION['id'] ?>">Effacer</a></td> 
+                            <!--                            changer link -->
+                            <td><a class="btn btn-success" href="appointmentChange.php?id=<?= $appointments->idAppointment ?>">Modifier</a></td> 
+                            <td><a class="btn btn-danger" href="admin.php?idDelete=<?= $appointments->idAppointment ?>">Supprimer</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>  
-            <p><a href="ajout-rendezvous.php" class="btn btn-info">retour</a></p>
+
         </div>
         <!-- fin formulaire pour lire un rendez-vous       -->
+
+
+
+
         <p>Points fidélité : </p>
         <div class="form-group col-md-4">
             <label for="inputState">Client</label>

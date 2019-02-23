@@ -95,19 +95,9 @@ class client extends database {
         return $result->fetch(PDO::FETCH_OBJ);
     }
 
-    /**
-     * Méthode qui récupère les infos utiles de l'utilisateur après sa connection
-     * @return type
-     */
-//    function getUserInfo() {
-//        $query = 'SELECT * FROM `c3005_user` WHERE `mail` = :mail';
-//        $result = $this->db->prepare($query);
-//        $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-//        $result->execute();
-//        return $result->fetch(PDO::FETCH_OBJ);
-//    }
+    
     /*     * ****************************CRUD rendez-vous ********************* */
-
+//crée un rendez-vous est dans appointment
     //affiche le nom et le prénom dans la liste déroulante des rendez-vous (2)
     public function getClientList() {
         //faut renomer birthDate avec le AS car le birthDate et entre parenthèse

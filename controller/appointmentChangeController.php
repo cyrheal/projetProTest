@@ -1,42 +1,21 @@
 <?php
 
-//    méthode lire info rendez-vous et supprimer
-$appointmentList = new appointment();
-$listAppointment = $appointmentList->getAppointmentsList();
-//Suppression d'un rendez-vous
-$appointment = new appointment();
-$isDelete = FALSE;
-$isNotDelete = FALSE;
-if (!empty($_GET['idDelete'])) {
-    $appointment->id = htmlspecialchars($_GET['idDelete']);
-    if ($appointment->deleteAppointmentById()) {
-//        header('Location:admin.php');   demandé comment faire pour avoir le message apres le refresh
-              $isDelete = TRUE;
-        } else {
-            $isNotDelete = TRUE;
-        }
-         
-    }
-
-
-//on appel la méthode grâce a $appointments qui se trouve dans ma classe et qui me retourne un tableau stocké dans $appointmentsList
-//    $isDelete = FALSE;
-//    if (!empty($_GET['idDelete'])) {
-//        $appointments->id = htmlspecialchars($_GET['idDelete']);
-//        if ($appointments->deleteAppointmentById()) {
-//            $isDelete = TRUE;
-//        }
-//    }
-
+// $isAppointments = false;
 $client = new client();
-//menu deroulant nom prenom
-$clientList = $client->getClientList();
+//méthode pour lire le rendezvous dans la page modifier un rendez vous
 $appointment = new appointment();
-//méthode poue le select dans le rendez-vous
+if (!empty($_GET['id'])) {
+    $appointment->id = htmlspecialchars($_GET['id']);
+    $isAppointment = $appointment->getAppointment();
+}
+$client = new client();
+//méthode pour le select client dans le rendez-vous
+$clientList = $client->getClientList();
+
+//méthode pour le select prestation dans le rendez-vous
 $performance = new performance();
 $listPerformance = $performance->getPriceByPerformance();
-//Déclaration regex nom et prénom
-$regexName = '/^[a-zA-Z\- ]+$/';
+
 //Déclaration regex date
 $regexDate = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
 $regexHour = '/(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/';
@@ -80,18 +59,34 @@ if (isset($_POST['submit'])) {
             $formError['hour'] = 'Erreur,merci de remplir le champ heure de rendez-vous.';
         }
     }
-//fin vérification du formulaire
-    if (count($formError) == 0) {
-        $appointment->dateHour = $date . ' ' . $hour;
-        $appointment->id_c3005_user = $id_c3005_user;
-        $appointment->id_c3005_performance = $id_c3005_performance;
-        $checkAppointment = $appointment->checkFreeAppointment();
-        if ($checkAppointment === '1') {
+    //on verifie si il n'y a pas d'erreur alors on instancie la classe patients.
+    if (count($formError) === 0) {
+        $appointments = new appointment();
+        $appointments->id = $_GET['id'];
+        $appointments->dateHour = $date . ' ' . $hour;
+        $appointments->id_c3005_user = $id_c3005_user;
+        $appointments->id_c3005_performance = $id_c3005_performance;
+        $checkAppointment = $appointments->checkFreeAppointment();
+             if ($checkAppointment === '1') {
             $formError['checkAppointment'] = 'Ce rendez-vous n\'est pas disponible';
         } else if ($checkAppointment === '0') {
-            $isSuccess = $appointment->getAddAppointments();
+          $isSuccess = $appointments->AppointmentUpdate();
+//       header('Location:admin.php');
+//            var_dump($appointment);
         } else {
             $formError['checkAppointment'] = 'Le devellopeur est en pause';
         }
+        
+        
+        
+       
+//                if ($checkAppointment === '1') {
+//            $formError['checkAppointment'] = 'Ce rendez-vous n\'est pas disponible';
+//        } else if ($checkAppointment === '0') {
+////             HEADER('location:liste-rendezvous.php');
+//        } else {
+//            $formError['checkAppointment'] = 'Le devellopeur est en pause';
+//        }
     }
-}
+    }
+

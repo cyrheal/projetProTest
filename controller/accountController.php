@@ -2,6 +2,12 @@
 
 $client = new client();
 $listCity = new city();
+//lire le rendez-vous
+$appointment = new appointment();
+
+    $listAppointment = $appointment->getAppointment();
+    var_dump($listAppointment);
+
 //méthode pour le menu déroulant ville
 $cityList = $listCity->getCityList();
 //méthode pour le menu déroulant code postale

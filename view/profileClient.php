@@ -36,7 +36,8 @@ include 'sidebar.php';
                 <td><?= $isClient->loyaltyPoint ?></td>
             </tr>
         </tbody>
-    </table>  
+    </table> 
+        <p><a href="admin.php" class="btn btn-info">retour</a></p>
        </div>
        </div>
      

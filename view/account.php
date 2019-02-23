@@ -8,6 +8,54 @@ include 'sidebar.php';
 
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
     <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
+        
+        
+<!--  .........      lire le ou les rendez vous a faire..........................             -->       
+<!--début formulaire pour lire un rendez-vous-->
+
+        <div class="table-responsive mt-5">
+            <p>Liste des rendez-vous :</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>idA</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Descriptive</th>
+                        <th>Price</th>
+                        <th>Profil</th>
+                        <th>Supprimer</th>
+                        <th>Effacer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- un tableau d objet-->
+                    <?php foreach ($listAppointment AS $appointments) { ?>
+                        <tr>   
+                            <td><?= $appointments->idUser ?></td>
+                            <td><?= $appointments->idAppointment ?></td>
+                            <td><?= $appointments->lastname ?></td>
+                            <td><?= $appointments->firstname ?></td>
+                            <td><?= $appointments->date ?></td>
+                            <td><?= $appointments->hour ?></td>
+                            <td><?= $appointments->descriptive ?></td>
+                            <td><?= $appointments->price ?></td>
+                          
+                            <!--                            changer link -->
+                                                  
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>  
+            
+        </div>
+         
+        
+<!--        fin lire le ou les rdv........................................-->
+
         <?php if (isset($_SESSION['isConnect'])) { ?>
             <p>Informations personnelles :</p>
             <div class="table-responsive">
