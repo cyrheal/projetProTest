@@ -38,8 +38,9 @@ include 'sidebar.php';
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="mail">Mail</label>
-                    <input name="mail" type="email" class="form-control" id="mail" placeholder="Adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
+                    <input name="mail" type="email" class="form-control" id="mailRegister" placeholder="Adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['mail']) ? $formError['mail'] : '' ?> </p>
+               <div class="mailMessage"></div> <!--     a retirer?-->
                 </div>
                 <div class="form-group col-md-6">
                     <label for="confirmMail">Confirmer adresse mail</label>

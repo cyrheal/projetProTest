@@ -40,7 +40,7 @@ include 'sidebar.php';
                 <p class="text-danger"><?= isset($formError['performance']) ? $formError['performance'] : '' ?></p>
                 <label for="date"> Date du rendez-vous : </label><input type="date" id="date" name="date" value="<?= isset($date) ? $date : '' ?>"/>
                 <p class="text-danger"><?= isset($formError['date']) ? $formError['date'] : '' ?></p> 
-                <p><label for="hour">Heure du rendez-vous (heures d'ouverture 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= isset($hour) ? $hour : '' ?>"/></p>
+                <p><label for="hour">Heure du rendez-vous (plage horaire 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= isset($hour) ? $hour : '' ?>"/></p>
                 <div>
                     <div class="nav-item">
                         <input type="submit" class="valid" value="Valider" name="submit"/></a>
@@ -76,8 +76,8 @@ include 'sidebar.php';
                         <th>Descriptive</th>
                         <th>Price</th>
                         <th>Profil</th>
+                        <th>Modifier</th>
                         <th>Supprimer</th>
-                        <th>Effacer</th>
                     </tr>
                 </thead>
                 <tbody>

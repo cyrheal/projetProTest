@@ -1,17 +1,6 @@
 <?php
 
-$client = new client();
-$listCity = new city();
-//lire le rendez-vous
-$appointment = new appointment();
 
-    $listAppointment = $appointment->getAppointment();
-    var_dump($listAppointment);
-
-//méthode pour le menu déroulant ville
-$cityList = $listCity->getCityList();
-//méthode pour le menu déroulant code postale
-$zipcodeList = $listCity->getZipcodeList();
 //regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom
@@ -108,7 +97,7 @@ if (isset($_POST['submit'])) {
         $formError['city'] = 'Veuillez renseigner la ville';
         $formError['zipcode'] = 'veuillez renseigner le code postale';
     }
-//fin vérification du formulaire
+//Si je valide le formulaire et que le tableau d'erreur est vide :
     if (count($formError) == 0) {
         $clientUpdate = new client();
         $clientUpdate->id = $_SESSION['id'];
@@ -142,6 +131,16 @@ if (isset($_POST['deleteSubmit'])) {
         session_destroy();
     }
 }
+$client = new client();
+$listCity = new city();
+//lire le rendez-vous a faire, donner les valeurs attendu par la requete
+$appointment = new appointment();
+$appointment->id_c3005_user = $_SESSION['id'];
+$appointmentsList = $appointment->appointmentListByPatient();
+//méthode pour le menu déroulant ville
+$cityList = $listCity->getCityList();
+//méthode pour le menu déroulant code postale
+$zipcodeList = $listCity->getZipcodeList();
 
 
 

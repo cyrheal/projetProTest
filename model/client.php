@@ -36,7 +36,16 @@ class client extends database {
         $queryResult->bindValue(':id_c3005_city', $this->id_c3005_city, PDO::PARAM_INT);
         return $queryResult->execute();
     }
-
+    
+//    vérification si l'email exixte deja
+   function checkFreeMail() {
+        $query = 'SELECT COUNT(*) AS `nbMail` FROM `c3005_user` WHERE `mail` = :mail';
+        $result = $this->db->prepare($query);
+        $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $result->execute();
+        $checkFreeMail = $result->fetch(PDO::FETCH_OBJ);
+        return $checkFreeMail->nbMail;
+    }
     //
     /**
      * méthode qui récupère les infos utiles de l'utilisateur après sa connection et affiche le profil du client (3)

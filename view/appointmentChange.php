@@ -6,7 +6,7 @@ include 'sidebar.php';
 ?>
 
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
+    <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
         <?php if ($isAppointment) {
             ?>
             <div class="table-responsive mt-5">
@@ -43,7 +43,7 @@ include 'sidebar.php';
                 ?>
                 <p>Le rendez-vous n'a pas été trouvé</p>
             <?php } ?>
-            <p><a href="admin.php" class="btn btn-info">retour</a></p>
+            <p><a href="admin.php" class="btn btn-success">retour</a></p>
         </div>
         <p class="text-danger"><?= isset($formError['checkAppointment']) ? $formError['checkAppointment'] : '' ?></p>
         <form method="POST" class="form" action="appointmentChange.php?id=<?= $appointment->id ?>">
@@ -61,27 +61,27 @@ include 'sidebar.php';
                 <legend>Modifier le rendez-vous un rendez-Vous</legend>
                 <label for="idLastname"> Nom et prénom du client : </label>
                 <select name="idLastname" id="idLastname">
-                    <option value="">Choix du client</option>
+                    <option disabled value="">Choix du client</option>
                     <?php foreach ($clientList as $clientDetail) { ?>
-                        <option value = "<?= $clientDetail->id ?>"><?= $clientDetail->lastname . ' ' . $clientDetail->firstname ?></option>
+                        <option value = "<?= $clientDetail->id ?>" <?php if ($clientDetail->id == $isAppointment->idUser){?> selected <?php }?> ><?= $clientDetail->lastname . ' ' . $clientDetail->firstname ?></option>
                     <?php } ?>
                 </select>
                 <p class="text-danger"><?= isset($formError['client']) ? $formError['client'] : '' ?></p>
 
                 <label for="idPerformance">Prestation : </label>
                 <select name="idPerformance" id="idPerformance">
-                    <option value="">Choix de la prestation</option>
+                    <option disabled value="">Choix de la prestation</option>
                     <?php foreach ($listPerformance as $performanceDetail) { ?>
-                        <option value = "<?= $performanceDetail->id ?>"><?= $performanceDetail->descriptive . ' ' . $performanceDetail->price ?></option>
+                        <option value = "<?= $performanceDetail->id ?>" <?php if ($performanceDetail->id == $isAppointment->idUser){?> selected<?php } ?> ><?= $performanceDetail->descriptive . ' ' . $performanceDetail->price ?></option>
                     <?php } ?>
                 </select>
                 <p class="text-danger"><?= isset($formError['performance']) ? $formError['performance'] : '' ?></p>
-                <label for="date"> Date du rendez-vous : </label><input type="date" id="date" name="date" value="<?= isset($date) ? $date : '' ?>"/>
+                <label for="date"> Date du rendez-vous : </label><input type="date" id="date" name="date" value="<?= $isAppointment->date ?>"/>
                 <p class="text-danger"><?= isset($formError['date']) ? $formError['date'] : '' ?></p> 
-                <p><label for="hour">Heure du rendez-vous (heures d'ouverture 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= isset($hour) ? $hour : '' ?>"/></p>
+                <p><label for="hour">Heure du rendez-vous (plage horaire 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= $isAppointment->hour ?>"/></p>
                 <div>
                     <div class="nav-item">
-                        <input type="submit" class="valid" value="Valider" name="submit"/></a>
+                        <input type="submit" class="btn btn-info" value="Valider" name="submit"/>
                     </div>
                 </div>
             </fieldset>

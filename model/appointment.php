@@ -139,6 +139,46 @@ class appointment extends database {
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryResult->execute();
     }
+       /**
+     * méthode pour afficher sous ses informations la liste de ses rendez-vous (9)
+     * @return type
+     */
+//        public function appointmentListByPatient() {
+//        $result = array();
+//        $query = 'SELECT `c3005_appointment`.`id`, DATE_FORMAT(`c3005_appointment`.`dateHour`, "%d/%m/%Y") AS date, 
+//                  DATE_FORMAT(`c3005_appointment`.`dateHour`, "%H:%i") AS hour,
+//                 `id_c3005_user` FROM `c3005_appointment` WHERE `c3005_appointment`.`id_c3005_user`=:id';
+//        $queryResult = $this->db->prepare($query);
+//        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+//        if ($queryResult->execute()) {
+//            $result = $queryResult->fetchAll(PDO::FETCH_OBJ);
+//        }
+//        return $result;
+//    }
+    
+        //    lire les rendez-vous du client
+    public function appointmentListByPatient() {
+        // On met notre requète dans la variable $query qui selectionne tous les champs de la table appointments et patients en effectuant une jointure
+        // sur l'id et l'idpatient.
+        $return = FALSE;
+        $query = 'SELECT DATE_FORMAT(`c3005_appointment`.`dateHour`, "%d/%m/%Y") AS `date`,
+                        DATE_FORMAT(`c3005_appointment`.`dateHour`, "%H:%i") AS `hour`,
+                        `c3005_appointment`.`id` AS idAppointment,
+                        `c3005_user`.`id` AS `idUser`,
+                        `c3005_user`.`lastname`,
+                        `c3005_user`.`firstname`,
+                        `c3005_performance`.`descriptive`,
+                        `c3005_performance`.`price`
+                    FROM `c3005_appointment`
+                    LEFT JOIN `c3005_user`ON `c3005_user`.`id` = `c3005_appointment`.`id_c3005_user`
+                    LEFT JOIN `c3005_performance` ON `c3005_performance`.`id` = `c3005_appointment`.`id_c3005_performance` WHERE `c3005_appointment`.`id_c3005_user` = :id_c3005_user';
+// On crée un objet $getAppointmentsById qui prépare la requête avec comme paramètre $query
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id_c3005_user', $this->id_c3005_user, PDO::PARAM_INT);
+        $queryResult->execute();
+        $return = $queryResult->fetchAll(PDO::FETCH_OBJ);
+        return $return;
+    }
 }
 
 ?>

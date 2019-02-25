@@ -1,45 +1,13 @@
 <?php
 
-//    méthode lire info rendez-vous et supprimer
-$appointmentList = new appointment();
-$listAppointment = $appointmentList->getAppointmentsList();
-//Suppression d'un rendez-vous
-$appointment = new appointment();
-$isDelete = FALSE;
-$isNotDelete = FALSE;
-if (!empty($_GET['idDelete'])) {
-    $appointment->id = htmlspecialchars($_GET['idDelete']);
-    if ($appointment->deleteAppointmentById()) {
-//        header('Location:admin.php');   demandé comment faire pour avoir le message apres le refresh
-              $isDelete = TRUE;
-        } else {
-            $isNotDelete = TRUE;
-        }
-         
-    }
 
-
-//on appel la méthode grâce a $appointments qui se trouve dans ma classe et qui me retourne un tableau stocké dans $appointmentsList
-//    $isDelete = FALSE;
-//    if (!empty($_GET['idDelete'])) {
-//        $appointments->id = htmlspecialchars($_GET['idDelete']);
-//        if ($appointments->deleteAppointmentById()) {
-//            $isDelete = TRUE;
-//        }
-//    }
-
-$client = new client();
-//menu deroulant nom prenom
-$clientList = $client->getClientList();
-$appointment = new appointment();
-//méthode poue le select dans le rendez-vous
-$performance = new performance();
-$listPerformance = $performance->getPriceByPerformance();
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date
 $regexDate = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
 $regexHour = '/(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/';
+$isDelete = FALSE;
+$isNotDelete = FALSE;
 $formError = array();
 $isSuccess = FALSE;
 $isError = FALSE;
@@ -82,6 +50,7 @@ if (isset($_POST['submit'])) {
     }
 //fin vérification du formulaire
     if (count($formError) == 0) {
+        $appointment = new appointment();
         $appointment->dateHour = $date . ' ' . $hour;
         $appointment->id_c3005_user = $id_c3005_user;
         $appointment->id_c3005_performance = $id_c3005_performance;
@@ -95,3 +64,27 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
+//    méthode lire info rendez-vous et supprimer
+$appointmentList = new appointment();
+$listAppointment = $appointmentList->getAppointmentsList();
+//Suppression d'un rendez-vous
+$appointmentDelete = new appointment();
+//supprimer rdv
+if (!empty($_GET['idDelete'])) {
+    $appointmentDelete->id = htmlspecialchars($_GET['idDelete']);
+    if ($appointmentDelete->deleteAppointmentById()) {
+//        header('Location:admin.php');   demandé comment faire pour avoir le message apres le refresh
+              $isDelete = TRUE;
+        } else {
+            $isNotDelete = TRUE;
+        }
+         
+    }
+$client = new client();
+//menu deroulant nom prenom
+$clientList = $client->getClientList();
+
+//méthode poue le select dans le rendez-vous
+$performance = new performance();
+$listPerformance = $performance->getPriceByPerformance();

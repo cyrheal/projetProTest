@@ -11,5 +11,6 @@
 <script src="../assets/MDB-Free_4.7.0/js/popper.min.js" type="text/javascript"></script>
 <script src="../assets/MDB-Free_4.7.0/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/MDB-Free_4.7.0/js/mdb.js" type="text/javascript"></script>
+<script defer src="../assets/js/script.js"></script><!--  defer rapidité execution = fonction asynchrone-->
 </body>
 </html>

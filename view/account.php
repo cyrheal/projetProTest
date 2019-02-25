@@ -1,5 +1,4 @@
 <?php
-
 include '../configuration.php';
 include '../controller/accountController.php';
 include '../template/header.php';
@@ -8,10 +7,10 @@ include 'sidebar.php';
 
 <div class="col-md-9 mainContent"><!--couleur colonne droite-->
     <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
-        
-        
-<!--  .........      lire le ou les rendez vous a faire..........................             -->       
-<!--début formulaire pour lire un rendez-vous-->
+
+
+        <!--  .........      lire le ou les rendez vous    !! a faire..........................             -->       
+        <!--début formulaire pour lire un rendez-vous-->
 
         <div class="table-responsive mt-5">
             <p>Liste des rendez-vous :</p>
@@ -26,14 +25,10 @@ include 'sidebar.php';
                         <th>Heure</th>
                         <th>Descriptive</th>
                         <th>Price</th>
-                        <th>Profil</th>
-                        <th>Supprimer</th>
-                        <th>Effacer</th>
-                    </tr>
                 </thead>
                 <tbody>
                     <!-- un tableau d objet-->
-                    <?php foreach ($listAppointment AS $appointments) { ?>
+                    <?php foreach ($appointmentsList AS $appointments) { ?>
                         <tr>   
                             <td><?= $appointments->idUser ?></td>
                             <td><?= $appointments->idAppointment ?></td>
@@ -42,19 +37,14 @@ include 'sidebar.php';
                             <td><?= $appointments->date ?></td>
                             <td><?= $appointments->hour ?></td>
                             <td><?= $appointments->descriptive ?></td>
-                            <td><?= $appointments->price ?></td>
-                          
-                            <!--                            changer link -->
-                                                  
-                        </tr>
+                            <td><?= $appointments->price ?></td></tr>
                     <?php } ?>
                 </tbody>
-            </table>  
-            
+            </table>
         </div>
-         
-        
-<!--        fin lire le ou les rdv........................................-->
+
+
+        <!--        fin lire le ou les rdv........................................-->
 
         <?php if (isset($_SESSION['isConnect'])) { ?>
             <p>Informations personnelles :</p>
@@ -127,12 +117,12 @@ include 'sidebar.php';
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="password">Mot de passe actuel ou nouveau</label>
-                            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe actuel ou nouveau" value="<?= isset($password) ? $password : '' ?>" />
+                            <input name="password" type="password" class="form-control" id="password" placeholder="Mot de passe actuel ou nouveau" value="" />
                             <p class="text-danger"> <?= isset($formError['password']) ? $formError['password'] : '' ?> </p>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="confirmPassword">Confirme mot de passe actuel ou nouveau</label>
-                            <input name="confirmPassword"type="password" class="form-control" id="confirmPassword" placeholder="Confirme mot de passe actuel ou nouveau" value="<?= isset($confirmPassword) ? $confirmPassword : '' ?>" />
+                            <input name="confirmPassword"type="password" class="form-control" id="confirmPassword" placeholder="Confirme mot de passe actuel ou nouveau" value="" />
                             <p class="text-danger"> <?= isset($formError['confirmPassword']) ? $formError['confirmPassword'] : '' ?> </p>
                         </div>
                     </div>
@@ -146,7 +136,7 @@ include 'sidebar.php';
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="zipcode">Code postale</label>
-                            <select name="zipcode" id="inputState" class="form-control">
+                            <select name="zipcode" id="zipcode" class="form-control">
                                 <?php foreach ($zipcodeList as $zipCode) { ?>
                                     <option <?php if ($_SESSION['zipcode'] == $zipCode->zipcode) { ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
                                 <?php } ?>
