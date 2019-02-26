@@ -25,7 +25,6 @@ include '../controller/headerController.php';
                     <a class="nav-item nav-link" href="index.php">Accueil</a><!--home.php est inclus dans l'index-->
                     <a class="nav-item nav-link" href="prestation.php">Prestations et tarifs</a><!--nav-item nav link pour changer la couleur de bleu à l actuel-->
                     <a class="nav-item nav-link" href="appointment.php">Prendre RDV</a>
-                    <a class="nav-item nav-link" href="organizer.php">Agenda</a>
                     <ul class="navbar-nav mr-auto">
                         <?php if (isset($_SESSION['isConnect']) && ((($_SESSION['id_c3005_role']) == 1 ) || ($_SESSION['id_c3005_role'] == 2))) { ?>
                             <li class="nav-item dropdown">

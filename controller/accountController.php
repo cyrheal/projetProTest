@@ -7,7 +7,7 @@ $regexName = '/^[a-zA-Záàâäãåçéèêëíìîïñóòôöõúùûüýÿæ�
 $regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
 //Tableau des messages d'erreur
 $formError = array();
-//variables pour le message de confirmation de la modification du profil
+//Variables pour le message de confirmation de la modification du profil
 $isSuccess = FALSE;
 $isError = FALSE;
 //Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le 

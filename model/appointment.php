@@ -3,33 +3,49 @@
 
 class appointment extends database {
 
+    //Création d'attributs qui correspondent à chacun des champs de la table appointment
+    //et on les initialise par rapport à leurs types.
     public $id = 0;
     public $dateHour = '0000-00-00 00:00:00';
     public $id_c3005_user = 0;
     public $id_c3005_performance = 0;
 
+//On appelle le __construct() du parent via parent::
     function construct() {
         parent::construct();
     }
 
-//crée un rendez-vous
+    /**
+     * Méthode pour créer un rendez-vous
+     * @return type éxécute
+     */
     public function getAddAppointments() {
-        // On insert les données du patient à l'aide de la requête INSERT INTO et le nom des champs de la table
-        $query = 'INSERT INTO `c3005_appointment` (`dateHour`,`id_c3005_user`,id_c3005_performance ) VALUES (:dateHour, :id_c3005_user, :id_c3005_performance)';
+//On insert les données du client à l'aide de la requête préparée avec un INSERT INTO et le nom des champs de la table
+//On insert les valeurs des variables via les marqueurs nominatifs)        
+        $query = 'INSERT INTO `c3005_appointment` (`dateHour`,`id_c3005_user`,id_c3005_performance ) '
+                . 'VALUES (:dateHour, :id_c3005_user, :id_c3005_performance)';
         $queryResult = $this->db->prepare($query);
+//On attribue les valeurs via bindValue et on recupère les attributs de la classe via $this       
         $queryResult->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
         $queryResult->bindValue(':id_c3005_user', $this->id_c3005_user, PDO::PARAM_INT);
         $queryResult->bindValue(':id_c3005_performance', $this->id_c3005_performance, PDO::PARAM_INT);
+//On utilise la méthode execute() via un return        
         return $queryResult->execute();
     }
 
-    //        verifie que le rendez vous est libre a commenter la fin pour l explication
+    /**
+     * Méehode qui vérifie si un rendez-vous existe par rapport au client
+     * @return type boolean  
+     */
     public function checkFreeAppointment() {
+//On effectue un requete qui compte le nombre de ligne qui est égale à dateHour et id_c3005_user
+//On place un marqueur nominatif pour récupérer les valeurs de dateHour et de id_c3005_user        
         $result = FALSE;
         $query = 'SELECT COUNT(`id`) AS `takenAppointment` FROM `c3005_appointment` WHERE `dateHour`=:dateHour AND `id_c3005_user`=:id_c3005_user';
         $freeAppointment = $this->db->prepare($query);
         $freeAppointment->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
         $freeAppointment->bindValue(':id_c3005_user', $this->id_c3005_user, PDO::PARAM_INT);
+//On effectue une condition pour donner une valeure booleenne à $resultObject      
         if ($freeAppointment->execute()) {
             $resultObject = $freeAppointment->fetch(PDO::FETCH_OBJ);
             $result = $resultObject->takenAppointment;
@@ -37,7 +53,10 @@ class appointment extends database {
         return $result;
     }
 
-//    lire les rendez-vous
+    /**
+     * Méthode qui lit les rendez-vous de la table appointment
+     * @return type array
+     */
     public function getAppointmentsList() {
         // On met notre requète dans la variable $query qui selectionne tous les champs de la table appointments et patients en effectuant une jointure
         // sur l'id et l'idpatient.
@@ -122,6 +141,11 @@ class appointment extends database {
 //        return $isOk;
 //    }
 //    modifie le rendez vous
+
+    /**
+     * 
+     * @return type
+     */
     public function AppointmentUpdate() {
         $query = 'UPDATE `c3005_appointment` SET `dateHour` = :dateHour, `id_c3005_user` = :id_c3005_user, `id_c3005_performance` = :id_c3005_performance WHERE `c3005_appointment`.`id` = :id';
         $queryResult = $this->db->prepare($query);
@@ -132,14 +156,16 @@ class appointment extends database {
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryResult->execute();
     }
- public function deleteAppointmentById() {
+
+    public function deleteAppointmentById() {
         $query = 'DELETE FROM `c3005_appointment` WHERE `c3005_appointment`.`id` = :id';
         $queryResult = $this->db->prepare($query);
         // on attribue les valeurs avec bindValue et on recupère les attributs avec $this
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryResult->execute();
     }
-       /**
+
+    /**
      * méthode pour afficher sous ses informations la liste de ses rendez-vous (9)
      * @return type
      */
@@ -155,8 +181,7 @@ class appointment extends database {
 //        }
 //        return $result;
 //    }
-    
-        //    lire les rendez-vous du client
+    //    lire les rendez-vous du client
     public function appointmentListByPatient() {
         // On met notre requète dans la variable $query qui selectionne tous les champs de la table appointments et patients en effectuant une jointure
         // sur l'id et l'idpatient.
@@ -179,6 +204,7 @@ class appointment extends database {
         $return = $queryResult->fetchAll(PDO::FETCH_OBJ);
         return $return;
     }
+
 }
 
 ?>

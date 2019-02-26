@@ -1,32 +1,31 @@
 <?php
-
 //Appel AJAX pour le mail
 if (isset($_POST['mailTest'])) {
     include '../configuration.php';
     $clientMail = new client();
     $clientMail->mail = htmlspecialchars($_POST['mailTest']);
+//Méthode pour vérifier si l'email exixte déjà    
     echo $clientMail->checkFreeMail();
 } else {
 //Si mon adresse mail est disponible :   
-//regex numéro de téléphone
+//Regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
-//regex nom et prénom
+//Regex nom et prénom
 $regexName = '/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
-//regex date adresse
+//Regex adresse postale
 $regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
 //Tableau des messages d'erreur
 $formError = array();
-//variables pour le message de confirmation de l'inscription
+//Variables pour le message de confirmation de l'inscription
 $isSuccess = FALSE;
 $isError = FALSE;
-//Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le $_POST['lastname'] avec ma regex.
-//Si $_POST['lastname'] respecte les conditions de ma regex,je declare ma varible $lastname sinon je le stock dans mon tableau formError.
+//Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le 
+//$_POST['lastname'] avec ma regex. Si $_POST['lastname'] respecte les conditions de ma regex,je declare
+// ma varible $lastname sinon je le stock dans mon tableau formError.
 //Nom du client    
     if (isset($_POST['submit'])) {
         if (isset($_POST['lastname'])) {
             if (!empty($_POST['lastname'])) {
-                // Si lastname ne respecte pas les conditions de ma regex alors je stock un message d'erreur
-                // dont mon tableau formError
                 if (preg_match($regexName, $_POST['lastname'])) {
                     $lastname = htmlspecialchars($_POST['lastname']);
                 } else {
@@ -62,7 +61,7 @@ $isError = FALSE;
             }
         }
 //Adresse mail
-        //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
+//On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
         if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
             if ($_POST['mail'] == $_POST['confirmMail']) {
                 if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
@@ -89,7 +88,8 @@ $isError = FALSE;
                 $formError['address'] = 'Veuillez remplir le champ adresse.';
             }
         }
-//On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. On le hash avant de le mettre en base de données. 
+//On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. 
+//On le hash avant de le mettre en base de données. 
         if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
             if ($_POST['password'] == $_POST['confirmPassword']) {
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -107,7 +107,8 @@ $isError = FALSE;
             $formError['city'] = 'Veuillez renseigner la ville';
             $formError['zipcode'] = 'veuillez renseigner le code postale';
         }
-//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $client qui devient une instance de la classe client.
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $client 
+//qui devient une instance de la classe client.
         if (count($formError) == 0) {
             $client = new client();
             $client->lastname = $lastname;
@@ -117,6 +118,7 @@ $isError = FALSE;
             $client->phoneNumber = $phoneNumber;
             $client->password = $password;
             $client->id_c3005_city = $id_c3005_city;
+//Méthode pour créer un compte client            
             if ($client->addClient()) {
                 $isSuccess = TRUE;
                 $lastname = "";
@@ -132,9 +134,9 @@ $isError = FALSE;
         }
     }
 $listCity = new city();
-//méthode pour la liste déroulante de la ville
+//méthode pour la liste déroulante de la ville dans l'enregistrement d'un client
 $cityList = $listCity->getCityList();
-//méthode pour la liste déroulante du code postale
+//méthode pour la liste déroulante du code postale dans l'enregistrement d'un client
 $zipcodeList = $listCity->getZipcodeList();
 }
 ?>
