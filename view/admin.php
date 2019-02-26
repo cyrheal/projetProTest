@@ -43,7 +43,7 @@ include 'sidebar.php';
                 <p><label for="hour">Heure du rendez-vous (plage horaire 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= isset($hour) ? $hour : '' ?>"/></p>
                 <div>
                     <div class="nav-item">
-                        <input type="submit" class="valid" value="Valider" name="submit"/></a>
+                        <button type="submit" class="btn btn-info" name="submit"> Valider</button>
                     </div>
                 </div>
             </fieldset>
@@ -104,19 +104,29 @@ include 'sidebar.php';
         </div>
         <!-- fin formulaire pour lire un rendez-vous       -->
 
+        <form method="POST" action="admin.php" class="form">
+
+            <fieldset>
+                <legend>Ajouter des points fidélités</legend>
+                <label for="idLastname"> Nom et prénom du client : </label>
+                <select name="idLastname" id="idLastname">
+                    <option value="">Choix du client</option>
+                    <?php foreach ($clientList as $clientDetail) { ?>
+                        <option value = "<?= $clientDetail->id ?>"><?= $clientDetail->lastname . ' ' . $clientDetail->firstname . ' | ' . $clientDetail->loyaltyPoint ?></option>
+                    <?php } ?>
+                </select>
+                <p class="text-danger"><?= isset($formError['clientLoyalty']) ? $formError['clientLoyalty'] : '' ?></p>
 
 
-
-        <p>Points fidélité : </p>
-        <div class="form-group col-md-4">
-            <label for="inputState">Client</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choisir...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <input type="number" />
-        <p>Rendez-vous</p>
+                <label for="loyaltyPoint"> Points de fidélités : </label><input type="number" id="loyaltyPoint" name="loyaltyPoint" value="<?= isset ($loyaltyPoint) ? $loyaltyPoint : '' ; ?>"/>
+                <p class="text-danger"><?= isset($formError['loyaltyPoint']) ? $formError['loyaltyPoint'] : '' ?></p> 
+                <div>
+                    <div class="nav-item">
+                        <button type="submit" class="btn btn-info" name="submitLoyalty"> Valider</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>
 <?php

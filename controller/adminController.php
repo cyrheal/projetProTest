@@ -1,6 +1,5 @@
 <?php
 
-
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date
@@ -16,7 +15,7 @@ if (isset($_POST['submit'])) {
     if (isset($_POST['idLastname'])) {
         $id_c3005_user = htmlspecialchars($_POST['idLastname']);
     } else {
-        $formError['client'] = 'Veuillez selectioner un patient';
+        $formError['client'] = 'Veuillez selectioner un client';
     }
 //menu déroulant prestation
     if (isset($_POST['idPerformance'])) {
@@ -64,27 +63,58 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+//si j appuie sur le boutton pour modifier les points fidélités
+if (isset($_POST['submitLoyalty'])) {
+//menu déroulant pour le nom prénom
+    if (isset($_POST['idLastname'])) {
+        if (!empty($_POST['idLastname'])) {
+            $id_c3005_user = htmlspecialchars($_POST['idLastname']);
+        } else {
+            $formError['clientLoyalty'] = 'Veuillez selectioner un client';
+        }
+    } else {
+        $formError['clientLoyalty'] = 'client invalide';
+    }
+//   input nombre 
+    if (isset($_POST['loyaltyPoint'])) {
+        if (!empty($_POST['loyaltyPoint'])) {
+            $loyaltyPoint = htmlspecialchars($_POST['loyaltyPoint']);
+        }else{
+           $formError['loyaltyPoint'] = 'Veuillez selectioner un chiffre'; 
+        }
+    } else {
+        $formError['loyaltyPoint'] = 'chiffre invalide';
+    }
+    //fin vérification du formulaire
+    if (count($formError) == 0) {
+        //point fidélité
+        $clientLoyaltyPoint = new client();
+        $clientLoyaltyPoint->id = $id_c3005_user;
+        $clientLoyaltyPoint->loyaltyPoint = $loyaltyPoint;
+        $clientLoyaltyPoint->updateLoyaltyPoint();
+        
+    }
+}
+//fin pour vérif point fidélité
 
 //    méthode lire info rendez-vous et supprimer
 $appointmentList = new appointment();
 $listAppointment = $appointmentList->getAppointmentsList();
 //Suppression d'un rendez-vous
 $appointmentDelete = new appointment();
-//supprimer rdv
 if (!empty($_GET['idDelete'])) {
     $appointmentDelete->id = htmlspecialchars($_GET['idDelete']);
     if ($appointmentDelete->deleteAppointmentById()) {
 //        header('Location:admin.php');   demandé comment faire pour avoir le message apres le refresh
-              $isDelete = TRUE;
-        } else {
-            $isNotDelete = TRUE;
-        }
-         
+        $isDelete = TRUE;
+    } else {
+        $isNotDelete = TRUE;
     }
+}
 $client = new client();
 //menu deroulant nom prenom
 $clientList = $client->getClientList();
-
 //méthode poue le select dans le rendez-vous
 $performance = new performance();
 $listPerformance = $performance->getPriceByPerformance();
+

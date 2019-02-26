@@ -110,12 +110,14 @@ class client extends database {
     //affiche le nom et le prénom dans la liste déroulante des rendez-vous (2)
     public function getClientList() {
         //faut renomer birthDate avec le AS car le birthDate et entre parenthèse
-        $query = 'SELECT `id`, `lastname`, `firstname` FROM `c3005_user` ORDER BY `lastname`';
+        $query = 'SELECT `id`, `lastname`, `firstname`,`loyaltyPoint` FROM `c3005_user` ORDER BY `lastname`';
         //permet d executer une requete sql this= $db 
         $queryResult = $this->db->query($query);
         //un tableau d'objets fecth(recherche) obj
         return $queryResult->fetchAll(PDO::FETCH_OBJ);
     }
+    
+
 
     //affiche le profil du patient en cliquant sur profil (3) changer la requete
     public function getProfilClientAdmin() {
@@ -144,4 +146,13 @@ class client extends database {
         return $return;
     }
 
+//    modifie les points fidélité (4)
+    public function updateLoyaltyPoint() {
+        $query = 'UPDATE `c3005_user` SET `loyaltyPoint` = :loyaltyPoint WHERE `c3005_user`.`id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':loyaltyPoint', $this->loyaltyPoint, PDO::PARAM_INT);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryResult->execute();
+    }    
+    
 }

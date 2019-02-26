@@ -1,6 +1,5 @@
 <?php
 
-
 //regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom

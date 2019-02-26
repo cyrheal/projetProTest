@@ -87,6 +87,17 @@ header h1 {
 .buttonCarousel{
     background-color: #fac1c8;
 }
+/*****liens sociaux*****/
+.facebook{
+    width: 60px;
+}
+.instagram{
+    width: 60px;
+    margin-left: 20px;
+}
+.marginLogo{
+    margin-left: 50px;
+}
 /*** formulaire ***/
 /*.result{
     background-color: #bfbfbf;
@@ -153,4 +164,5 @@ footer{
     header h1{
         font-size: 20px;
     }
+ 
 }

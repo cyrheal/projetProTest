@@ -72,7 +72,7 @@ include 'sidebar.php';
                 <select name="idPerformance" id="idPerformance">
                     <option disabled value="">Choix de la prestation</option>
                     <?php foreach ($listPerformance as $performanceDetail) { ?>
-                        <option value = "<?= $performanceDetail->id ?>" <?php if ($performanceDetail->id == $isAppointment->idUser){?> selected<?php } ?> ><?= $performanceDetail->descriptive . ' ' . $performanceDetail->price ?></option>
+                        <option value = "<?= $performanceDetail->id ?>" <?php if ($performanceDetail->descriptive == $isAppointment->descriptive){?> selected<?php } ?> ><?= $performanceDetail->descriptive . ' ' . $performanceDetail->price ?></option>
                     <?php } ?>
                 </select>
                 <p class="text-danger"><?= isset($formError['performance']) ? $formError['performance'] : '' ?></p>

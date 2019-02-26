@@ -1,5 +1,4 @@
 <?php
-
 include '../controller/headerController.php';
 ?>
 <!DOCTYPE html>
@@ -32,9 +31,6 @@ include '../controller/headerController.php';
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"><?= $_SESSION['firstname']; ?></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="?action=deconnexion">Déconnexion</a>
                                 </div>
                             </li>

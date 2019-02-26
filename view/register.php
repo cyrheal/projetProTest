@@ -37,10 +37,10 @@ include 'sidebar.php';
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="mail">Mail</label>
+                    <label for="mail">Adresse mail</label>
                     <input name="mail" type="email" class="form-control" id="mailRegister" placeholder="Adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['mail']) ? $formError['mail'] : '' ?> </p>
-               <div class="mailMessage"></div> <!--     a retirer?-->
+               <div class="mailMessage"></div> 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="confirmMail">Confirmer adresse mail</label>
@@ -62,8 +62,8 @@ include 'sidebar.php';
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label for="address">Adresse</label>
-                    <input name="address" type="text" class="form-control" id="address" placeholder="Adresse" value="<?= isset($address) ? $address : '' ?>" />
+                    <label for="address">Adresse postale</label>
+                    <input name="address" type="text" class="form-control" id="address" placeholder="Adresse postale" value="<?= isset($address) ? $address : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['address']) ? $formError['address'] : '' ?> </p>
                 </div>
             </div>
