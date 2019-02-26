@@ -93,7 +93,6 @@ include 'sidebar.php';
                             <td><?= $appointments->descriptive ?></td>
                             <td><?= $appointments->price ?></td>
                             <td><a class="btn btn-primary" href="profileClient.php?id=<?= $appointments->idUser ?>">Voir Profil</a></td>
-                            <!--                            changer link -->
                             <td><a class="btn btn-success" href="appointmentChange.php?id=<?= $appointments->idAppointment ?>">Modifier</a></td> 
                             <td><a class="btn btn-danger" href="admin.php?idDelete=<?= $appointments->idAppointment ?>">Supprimer</a></td>
                         </tr>

@@ -1,7 +1,4 @@
 <?php
-var_dump($_POST);
-?>
-<?php
 include '../configuration.php';
 include '../controller/registerController.php';
 include '../template/header.php';
@@ -13,7 +10,7 @@ include 'sidebar.php';
         <p>Formulaire d'inscription</p>
         <form method="POST" action="register.php">
             <?php if ($isSuccess) { ?>
-                <p class="text-success">Votre inscription a bien été prise en compte</p>
+                <p class="text-success">Votre inscription a bien été prise en compte, vous pouvez vous connecter.</p>
                 <?php
             }
             if ($isError) {

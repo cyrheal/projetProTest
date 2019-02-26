@@ -11,42 +11,42 @@ include 'sidebar.php';
 
         <!--  .........      lire le ou les rendez vous    !! a faire..........................             -->       
         <!--début formulaire pour lire un rendez-vous-->
-
-        <div class="table-responsive mt-5">
-            <p>Liste des rendez-vous :</p>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>idA</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th>Descriptive</th>
-                        <th>Price</th>
-                </thead>
-                <tbody>
-                    <!-- un tableau d objet-->
-                    <?php foreach ($appointmentsList AS $appointments) { ?>
-                        <tr>   
-                            <td><?= $appointments->idUser ?></td>
-                            <td><?= $appointments->idAppointment ?></td>
-                            <td><?= $appointments->lastname ?></td>
-                            <td><?= $appointments->firstname ?></td>
-                            <td><?= $appointments->date ?></td>
-                            <td><?= $appointments->hour ?></td>
-                            <td><?= $appointments->descriptive ?></td>
-                            <td><?= $appointments->price ?></td></tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-
-
-        <!--        fin lire le ou les rdv........................................-->
-
         <?php if (isset($_SESSION['isConnect'])) { ?>
+            <div class="table-responsive mt-5">
+                <p>Liste des rendez-vous :</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>idA</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Descriptive</th>
+                            <th>Price</th>
+                    </thead>
+                    <tbody>
+                        <!-- un tableau d objet-->
+                        <?php foreach ($appointmentsList AS $appointments) { ?>
+                            <tr>   
+                                <td><?= $appointments->idUser ?></td>
+                                <td><?= $appointments->idAppointment ?></td>
+                                <td><?= $appointments->lastname ?></td>
+                                <td><?= $appointments->firstname ?></td>
+                                <td><?= $appointments->date ?></td>
+                                <td><?= $appointments->hour ?></td>
+                                <td><?= $appointments->descriptive ?></td>
+                                <td><?= $appointments->price ?></td></tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!--        fin lire le ou les rdv........................................-->
+
+
             <p>Informations personnelles :</p>
             <div class="table-responsive">
                 <table class="table">

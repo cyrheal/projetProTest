@@ -1,36 +1,29 @@
 <?php
 
-if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
+//Appel AJAX pour le mail
+if (isset($_POST['mailTest'])) {
     include '../configuration.php';
     $clientMail = new client();
     $clientMail->mail = htmlspecialchars($_POST['mailTest']);
     echo $clientMail->checkFreeMail();
-} else { //Validation du formulaire
-    $client = new client();
-    $listCity = new city();
-//méthode pour la liste déroulante ville
-    $cityList = $listCity->getCityList();
-//méthode pour la liste déroulante code postale
-    $zipcodeList = $listCity->getZipcodeList();
+} else {
+//Si mon adresse mail est disponible :   
 //regex numéro de téléphone
-    $regexPhone = '/^[0-9]{10}$/';
+$regexPhone = '/^[0-9]{10}$/';
 //regex nom et prénom
-    $regexName = '/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
+$regexName = '/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
 //regex date adresse
-    $regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
-//regex ville mettre 0 9
-    $regexCity = '/^[0-9]{1,5}$/';
-    $formError = array();
-    $isSuccess = FALSE;
-    $isError = FALSE;
-
-//si le submit est isset
+$regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
+//Tableau des messages d'erreur
+$formError = array();
+//variables pour le message de confirmation de l'inscription
+$isSuccess = FALSE;
+$isError = FALSE;
+//Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le $_POST['lastname'] avec ma regex.
+//Si $_POST['lastname'] respecte les conditions de ma regex,je declare ma varible $lastname sinon je le stock dans mon tableau formError.
+//Nom du client    
     if (isset($_POST['submit'])) {
         if (isset($_POST['lastname'])) {
-            // Si $POST lastName extsite alors je declare ma varible $lastname
-            // et je la verrifie avec ma regex.
-            // si mon $_POST['lastname'] est différent de vide
-//Nom du patient
             if (!empty($_POST['lastname'])) {
                 // Si lastname ne respecte pas les conditions de ma regex alors je stock un message d'erreur
                 // dont mon tableau formError
@@ -43,7 +36,7 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
                 $formError['lastname'] = 'Veuillez remplir le champ nom.';
             }
         }
-//Prénom du patient
+//Prénom du client
         if (isset($_POST['firstname'])) {
             if (!empty($_POST['firstname'])) {
                 if (preg_match($regexName, $_POST['firstname'])) {
@@ -68,7 +61,7 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
                 $formError['phoneNumber'] = 'Veuillez remplir le champ numéro de téléphone.';
             }
         }
-//adresse mail
+//Adresse mail
         //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
         if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
             if ($_POST['mail'] == $_POST['confirmMail']) {
@@ -84,7 +77,7 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
             $formError['mail'] = 'Veuillez renseigner un mail';
             $formError['confirmMail'] = 'Veuillez confirmer le mail';
         }
-//    adresse postale
+//Adresse postale
         if (isset($_POST['address'])) {
             if (!empty($_POST['address'])) {
                 if (preg_match($regexAddress, $_POST['address'])) {
@@ -96,7 +89,7 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
                 $formError['address'] = 'Veuillez remplir le champ adresse.';
             }
         }
-        //On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. On le hash avant de le mettre en base de données. 
+//On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. On le hash avant de le mettre en base de données. 
         if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
             if ($_POST['password'] == $_POST['confirmPassword']) {
                 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -107,17 +100,15 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
             $formError['password'] = 'Veuillez renseigner un mot de passe';
             $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
         }
-//    verification ville et code postale
+//Verification de la ville et du code postale
         if (!empty($_POST['city']) && (!empty($_POST['zipcode']))) {
             $id_c3005_city = htmlspecialchars($_POST['city']);
         } else {
             $formError['city'] = 'Veuillez renseigner la ville';
             $formError['zipcode'] = 'veuillez renseigner le code postale';
         }
-
-//fin vérification du formulaire
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $client qui devient une instance de la classe client.
         if (count($formError) == 0) {
-//Si le compteur erreur est à 0 on instencie l'objet $client qui devient une instance de la classe client.     
             $client = new client();
             $client->lastname = $lastname;
             $client->firstname = $firstname;
@@ -128,10 +119,22 @@ if (isset($_POST['mailTest'])) { //Appel AJAX pour le mail.
             $client->id_c3005_city = $id_c3005_city;
             if ($client->addClient()) {
                 $isSuccess = TRUE;
+                $lastname = "";
+                $firstname = "";
+                $mail = "";
+                $address = "";
+                $phoneNumber = "";
+                $password = "";
+                $id_c3005_city = "";
             } else {
                 $isError = TRUE;
             }
         }
     }
+$listCity = new city();
+//méthode pour la liste déroulante de la ville
+$cityList = $listCity->getCityList();
+//méthode pour la liste déroulante du code postale
+$zipcodeList = $listCity->getZipcodeList();
 }
 ?>

@@ -1,14 +1,14 @@
 <?php
 
-//regex numéro de téléphone
+//Regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
-//regex nom et prénom
+//Regex nom et prénom
 $regexName = '/^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{2,70}$/';
-//regex adresse
+//Regex adresse
 $regexAddress = '/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{5,150}$/';
-//tableau des messages d'erreur
+//Tableau des messages d'erreur
 $formError = array();
-//variable pour le message de confirmation de la modification du profil
+//variables pour le message de confirmation de la modification du profil
 $isSuccess = FALSE;
 $isError = FALSE;
 //Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le $_POST['lastname'] avec ma regex.
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
             $formError['phoneNumber'] = 'Erreur,merci de remplir le champ numéro de téléphone.';
         }
     }
-//adresse mail
+//Adresse mail
     //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
         if ($_POST['mail'] == $_POST['confirmMail']) {
@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
         $formError['city'] = 'Veuillez renseigner la ville';
         $formError['zipcode'] = 'veuillez renseigner le code postale';
     }
-//Si je valide le formulaire et que le tableau d'erreur est vide :
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $client qui devient une instance de la classe client.
     if (count($formError) == 0) {
         $clientUpdate = new client();
         $clientUpdate->id = $_SESSION['id'];
@@ -126,20 +126,20 @@ if (isset($_POST['deleteSubmit'])) {
     $client = new client();
     $client->id = htmlspecialchars($_SESSION['id']);
     if ($client->deleteClientById()) {
-        header('Location:account.php');
+        header('Location:index.php');
         session_destroy();
     }
 }
-$client = new client();
 $listCity = new city();
-//lire le rendez-vous a faire, donner les valeurs attendu par la requete
+//Méthode pour le menu déroulant ville
+$cityList = $listCity->getCityList();
+//Méthode pour le menu déroulant code postale
+$zipcodeList = $listCity->getZipcodeList();
+//Lire le rendez-vous a faire, donner les valeurs attendu par la requete
 $appointment = new appointment();
 $appointment->id_c3005_user = $_SESSION['id'];
 $appointmentsList = $appointment->appointmentListByPatient();
-//méthode pour le menu déroulant ville
-$cityList = $listCity->getCityList();
-//méthode pour le menu déroulant code postale
-$zipcodeList = $listCity->getZipcodeList();
+
 
 
 
