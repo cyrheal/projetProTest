@@ -61,7 +61,7 @@ class appointment extends database {
         return $resultList;
     }
 
-    //    lire le rendez-vous pour le changer
+    //    lire le rendez-vous pour le changer dans modifie rdv
     public function getAppointment() {
         // On met notre requète dans la variable $query qui selectionne tous les champs de la table appointments et patients en effectuant une jointure
         // sur l'id et l'idpatient.

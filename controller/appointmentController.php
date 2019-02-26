@@ -1,11 +1,11 @@
 <?php
-
+//Controller à finir pour la version 2
+$regexDate = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
 $performance = new performance();
 $listPerformance = $performance->getPriceByPerformance();
-
 if (isset($_POST['submit'])) {
-    //adresse mail
-    //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
+//Adresse mail
+//On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
         if ($_POST['mail'] == $_POST['confirmMail']) {
             if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
@@ -26,7 +26,8 @@ if (isset($_POST['submit'])) {
     } else {
         $formError['performance'] = 'Veuillez selectioner une prestation';
     }
-//Date du rdv
+//rassembler les 3 rendez-vous    
+//Date du rdv 1
     if (isset($_POST['date'])) {
         if (!empty($_POST['date1'])) {
             if (preg_match($regexDate, $_POST['date1'])) {
@@ -38,7 +39,7 @@ if (isset($_POST['submit'])) {
             $formError['date1'] = 'Erreur,merci de remplir le champ date de rendez-vous.';
         }
     }
-    //Date du rdv
+//Date du rdv 2
     if (isset($_POST['date2'])) {
         if (!empty($_POST['date2'])) {
             if (preg_match($regexDate, $_POST['date2'])) {
@@ -50,7 +51,7 @@ if (isset($_POST['submit'])) {
             $formError['date2'] = 'Erreur,merci de remplir le champ date de rendez-vous.';
         }
     }
-    //Date du rdv
+//Date du rdv 3
     if (isset($_POST['date3'])) {
         if (!empty($_POST['date3'])) {
             if (preg_match($regexDate, $_POST['date3'])) {
@@ -63,7 +64,6 @@ if (isset($_POST['submit'])) {
         }
     }
 //    rajouter test area isset
-
 //fin vérification du formulaire
 //    if (count($formError) == 0) {
 //        $appointment = new appointment();

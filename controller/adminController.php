@@ -9,10 +9,11 @@ $isDelete = FALSE;
 $isNotDelete = FALSE;
 //Tableau des messages d'erreur
 $formError = array();
-//Variables pour la validation d'un un rendez-vous
+//Variables pour le message de la création d'un rendez-vous
 $isSuccess = FALSE;
 $isError = FALSE;
-//Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user sinon je le stock dans mon tableau formError
+//Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
+//sinon je le stock dans mon tableau formError
 if (isset($_POST['submit'])) {
 //Menu déroulant pour le nom et prénom
     if (isset($_POST['idLastname'])) {
@@ -50,8 +51,10 @@ if (isset($_POST['submit'])) {
             $formError['hour'] = 'Erreur,merci de remplir le champ heure de rendez-vous.';
         }
     }
-//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $appointment qui devient une instance de la classe appointment
-    //        $appointment est un objet
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $appointment 
+//qui devient une instance de la classe appointment.On concatène les valeurs de date et de hour, puis 
+//on éxécute la méthode checkFreeAppointment() pour vérifier si le rendez-vous est libre.
+//Si c'est libre, on éxécute la méthode getAddAppointments() pour créer un rendez-vous
     if (count($formError) == 0) {
         $appointment = new appointment();
         $appointment->dateHour = $date . ' ' . $hour;
@@ -67,7 +70,8 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-//Si $_POST['submitLoyalty'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user sinon je le stock dans mon tableau formError
+//Si $_POST['submitLoyalty'] existe et que $_POST['idLastname'] existe alors je declare ma varible 
+//$id_c3005_user sinon je le stock dans mon tableau formError
 if (isset($_POST['submitLoyalty'])) {
 //Menu déroulant pour le nom prénom
     if (isset($_POST['idLastname'])) {
@@ -89,7 +93,8 @@ if (isset($_POST['submitLoyalty'])) {
     } else {
         $formError['loyaltyPoint'] = 'chiffre invalide';
     }
-//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $client qui devient une instance de la classe client.
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $clientLoyaltyPoint 
+//et on éxécute la méthode updateLoyaltyPoint() pour modifier les points fidélité du client 
     if (count($formError) == 0) {
         $clientLoyaltyPoint = new client();
         $clientLoyaltyPoint->id = $id_c3005_user;
@@ -97,10 +102,10 @@ if (isset($_POST['submitLoyalty'])) {
         $clientLoyaltyPoint->updateLoyaltyPoint();
     }
 }
-//Méthode pour lire infos des rendez-vous 
+//Méthode pour lire la liste des rendez-vous 
 $appointmentList = new appointment();
 $listAppointment = $appointmentList->getAppointmentsList();
-//Méthode pour supprimer un rendez-vous
+//Méthode pour supprimer un rendez-vous d'un client
 $appointmentDelete = new appointment();
 if (!empty($_GET['idDelete'])) {
     $appointmentDelete->id = htmlspecialchars($_GET['idDelete']);

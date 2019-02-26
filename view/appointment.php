@@ -10,8 +10,8 @@ include 'sidebar.php';
         <p>Vous pouvez me contacter via ma page Facebook ou Instagam pour prendre un rendez-vous : </p>
         <div class="row mt-3 mb-3">
             <div class="offset-1" >
-                <a href="https://fr-fr.facebook.com/" target="_blank"><img class="facebook" src="../assets/img/logoFacebook.svg" alt="facebook"/></a>
-                <a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="../assets/img/logoInstagram.svg" alt="instagram"/></a>
+                <a href="https://www.facebook.com/profile.php?id=100002743732510" target="_blank"><img class="facebook" src="../assets/img/logoFacebook.svg" alt="facebook"/></a>
+                <a href="https://www.instagram.com/nailsbeautybyjess_soissons/" target="_blank"><img class="instagram" src="../assets/img/logoInstagram.svg" alt="instagram"/></a>
             </div>
         </div>
         <p>Connectez-vous pour prendre rendez-vous via notre formulaire; choisissez ensuite une prestation et 3 dates auxquelles vous serez disponible. Je reviendrais vers vous et vous proposerais des créneaux horaires, valables 24H.</p>

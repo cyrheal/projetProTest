@@ -1,10 +1,7 @@
 <?php
-
-$client = new client();
 $formError = array();
 $mail = '';
 $password = '';
-
 if (isset($_POST['login'])) {
     if (!empty($_POST['mail'])) {
         if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
@@ -21,14 +18,17 @@ if (isset($_POST['login'])) {
         $formError['password'] = 'Veuillez renseigner un mot de passe';
     }
     if (count($formError) == 0) {
+        $client = new client();
         $client->mail = $mail;
+//Méthode qui retourne le hashage du mot de passe du compte sélectionné        
         $hash = $client->getHashFromUser();
         if (is_object($hash)) {
+//On vérifie que le mot de passe correspond au mot de passe haché
             $isConnect = password_verify($password, $hash->password);
-            //l'utilisateur est connecté
             if ($isConnect) {
+//Méthode qui récupère les informations utiles de l'utilisateur après sa connection   
+//J'ai renomé $clientInfo->id en idUser, car il entré en conflit avec l'id de la ville               
                 $clientInfo = $client->getProfilclient();
-//     j'ai renomé dans la méthode getProfilclient() $_SESSION['id'] = $clientInfo->id en idUser, qui rentré en conflit avec l id de la ville
                 $_SESSION['id'] = $clientInfo->idUser;
                 $_SESSION['firstname'] = $clientInfo->firstname;
                 $_SESSION['lastname'] = $clientInfo->lastname;

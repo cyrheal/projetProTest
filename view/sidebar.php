@@ -29,8 +29,8 @@
     </div>
     <div class="row mt-5 mb-3 ml-5 ">
         <div class="offset-3" >
-            <a href="https://fr-fr.facebook.com/" target="_blank"><img class="facebook" src="../assets/img/logoFacebook.svg" alt="facebook"/></a>
-            <a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="../assets/img/logoInstagram.svg" alt="instagram"/></a>
+            <a href="https://www.facebook.com/profile.php?id=100002743732510" target="_blank"><img class="facebook" src="../assets/img/logoFacebook.svg" alt="facebook"/></a>
+            <a href="https://www.instagram.com/nailsbeautybyjess_soissons/" target="_blank"><img class="instagram" src="../assets/img/logoInstagram.svg" alt="instagram"/></a>
         </div>
     </div>
 </div>

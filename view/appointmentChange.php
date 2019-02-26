@@ -48,12 +48,12 @@ include 'sidebar.php';
         <p class="text-danger"><?= isset($formError['checkAppointment']) ? $formError['checkAppointment'] : '' ?></p>
         <form method="POST" class="form" action="appointmentChange.php?id=<?= $appointment->id ?>">
             <?php if ($isSuccess) { ?>
-                <p class="text-success">Votre rendez-vous a bien été prises en compte</p>
+                <p class="text-success">Votre rendez-vous a bien été modifier</p>
                 <?php
             }
             if ($isError) {
                 ?>
-                <p class="text-danger">Désolé, votre rendez-vous n'a pu être enregistré !</p>
+                <p class="text-danger">Désolé, votre rendez-vous n'a pu être modifier !</p>
                 <?php
             }
             ?>

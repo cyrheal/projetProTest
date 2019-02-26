@@ -1,5 +1,4 @@
 <?php
-
 //Regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //Regex nom et prénom
@@ -11,8 +10,9 @@ $formError = array();
 //variables pour le message de confirmation de la modification du profil
 $isSuccess = FALSE;
 $isError = FALSE;
-//Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le $_POST['lastname'] avec ma regex.
-//Si $_POST['lastname'] respecte les conditions de ma regex,je declare ma varible $lastname sinon je le stock dans mon tableau formError.
+//Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le 
+//$_POST['lastname'] avec ma regex. Si $_POST['lastname'] respecte les conditions de ma regex,je declare
+// ma varible $lastname sinon je le stock dans mon tableau formError.
 if (isset($_POST['submit'])) {
 //Nom du client  
     if (isset($_POST['lastname'])) {
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
         }
     }
 //Adresse mail
-    //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
+//On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
     if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
         if ($_POST['mail'] == $_POST['confirmMail']) {
             if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
@@ -78,7 +78,9 @@ if (isset($_POST['submit'])) {
             $formError['address'] = 'Erreur,merci de remplir le champ adresse.';
         }
     }
-//On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation. On le hash avant de le mettre en base de données. 
+//Mot de passe
+//On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation 
+//et on le hash avant de le mettre en base de données. 
     if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
         if ($_POST['password'] == $_POST['confirmPassword']) {
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -96,7 +98,8 @@ if (isset($_POST['submit'])) {
         $formError['city'] = 'Veuillez renseigner la ville';
         $formError['zipcode'] = 'veuillez renseigner le code postale';
     }
-//Si je valide le formulaire et que le tableau d'erreur est vide, on instencie l'objet $client qui devient une instance de la classe client.
+//Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $clientUpdate 
+//grâce à la classe client
     if (count($formError) == 0) {
         $clientUpdate = new client();
         $clientUpdate->id = $_SESSION['id'];
@@ -107,6 +110,7 @@ if (isset($_POST['submit'])) {
         $clientUpdate->phoneNumber = $phoneNumber;
         $clientUpdate->password = $password;
         $clientUpdate->id_c3005_city = $id_c3005_city;
+//Méthode pour que le client modifie ses informations
         if ($clientUpdate->updateClient()) {
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
@@ -121,7 +125,9 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-//Supprimer un client
+//Méthode pour que le client supprime son compte
+//Si $_GET['deleteSubmit'] n'est pas vide on attribue à $client id la valeur du get avec un htmlspecialchars
+//pour la protection et on applique la méthode deleteClientById pour supprimer le profil du client  
 if (isset($_POST['deleteSubmit'])) {
     $client = new client();
     $client->id = htmlspecialchars($_SESSION['id']);
@@ -135,7 +141,7 @@ $listCity = new city();
 $cityList = $listCity->getCityList();
 //Méthode pour le menu déroulant code postale
 $zipcodeList = $listCity->getZipcodeList();
-//Lire le rendez-vous a faire, donner les valeurs attendu par la requete
+//Méthode pour que le client lis son ou ses rendez-vous 
 $appointment = new appointment();
 $appointment->id_c3005_user = $_SESSION['id'];
 $appointmentsList = $appointment->appointmentListByPatient();

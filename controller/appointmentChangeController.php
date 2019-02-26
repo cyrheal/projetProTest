@@ -1,24 +1,28 @@
 <?php
-//Déclaration regex date
+//Déclaration regex date et heure
 $regexDate = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
 $regexHour = '/(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/';
+//Tableau des messages d'erreur
 $formError = array();
+//Variable pour le message de la modification du rendez-vous
 $isSuccess = FALSE;
 $isError = FALSE;
+//Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
+//sinon je le stock dans mon tableau formError
 if (isset($_POST['submit'])) {
-//menu déroulant pour le nom prénom
+//Menu déroulant pour le nom prénom
     if (isset($_POST['idLastname'])) {
         $id_c3005_user = htmlspecialchars($_POST['idLastname']);
     } else {
         $formError['client'] = 'Veuillez selectioner un patient';
     }
-//menu déroulant prestation
+//Menu déroulant des prestations
     if (isset($_POST['idPerformance'])) {
         $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
     } else {
         $formError['performance'] = 'Veuillez selectioner une prestation';
     }
-//Date du rdv
+//Date du rendez-vous
     if (isset($_POST['date'])) {
         if (!empty($_POST['date'])) {
             if (preg_match($regexDate, $_POST['date'])) {
@@ -30,7 +34,7 @@ if (isset($_POST['submit'])) {
             $formError['date'] = 'Erreur,merci de remplir le champ date de rendez-vous.';
         }
     }
-//Heure du rdv
+//Heure du rendez-vous
     if (isset($_POST['hour'])) {
         if (!empty($_POST['hour'])) {
             if (preg_match($regexHour, $_POST['hour'])) {
@@ -42,47 +46,31 @@ if (isset($_POST['submit'])) {
             $formError['hour'] = 'Erreur,merci de remplir le champ heure de rendez-vous.';
         }
     }
-    //on verifie si il n'y a pas d'erreur alors on instancie la classe patients.
+//Méthode pour la modification d'un rendez-vous   
+//Si il n'y a pas d'erreur alors on instancie l'objet $appointments et on éxécute la méthode AppointmentUpdate
     if (count($formError) === 0) {
         $appointments = new appointment();
         $appointments->id = $_GET['id'];
         $appointments->dateHour = $date . ' ' . $hour;
         $appointments->id_c3005_user = $id_c3005_user;
         $appointments->id_c3005_performance = $id_c3005_performance;
-        $isSuccess = $appointments->AppointmentUpdate();
-
-//          pas besoin pour modif
-//             if ($checkAppointment === '1') {
-//            $formError['checkAppointment'] = 'Ce rendez-vous n\'est pas disponible';
-//        } else if ($checkAppointment === '0') {
-//        
-////       header('Location:admin.php');
-////            var_dump($appointment);
-//        } else {
-//            $formError['checkAppointment'] = 'Le devellopeur est en pause';
-//        }
-//                if ($checkAppointment === '1') {
-//            $formError['checkAppointment'] = 'Ce rendez-vous n\'est pas disponible';
-//        } else if ($checkAppointment === '0') {
-////             HEADER('location:liste-rendezvous.php');
-//        } else {
-//            $formError['checkAppointment'] = 'Le devellopeur est en pause';
-//        }
+        if ($appointments->AppointmentUpdate()) {
+            $isSuccess = TRUE;
+        } else {
+            $isError = TRUE;
+        }
     }
 }
-// $isAppointments = false;
-$client = new client();
-//méthode pour lire le rendezvous dans la page modifier un rendez vous
+//Méthode pour lire le rendez-vous dans la page modifier un rendez-vous
 $appointment = new appointment();
 if (!empty($_GET['id'])) {
     $appointment->id = htmlspecialchars($_GET['id']);
     $isAppointment = $appointment->getAppointment();
 }
+//Méthode pour le select client dans le rendez-vous
 $client = new client();
-//méthode pour le select client dans le rendez-vous
 $clientList = $client->getClientList();
-
-//méthode pour le select prestation dans le rendez-vous
+//Méthode pour le select prestation dans le rendez-vous
 $performance = new performance();
 $listPerformance = $performance->getPriceByPerformance();
 
