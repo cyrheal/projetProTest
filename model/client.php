@@ -1,7 +1,8 @@
 <?php
 
 class client extends database {
-
+//Création d'attributs qui correspondent à chacun des champs de la table c3005_user
+//et on les initialise par rapport à leurs types
     public $id = 0;
     public $firstname = '';
     public $lastname = '';
@@ -12,7 +13,7 @@ class client extends database {
     public $loyaltyPoint = 0;
     public $id_c3005_role = 0;
     public $id_c3005_city = 0;
-
+//On appelle le __construct() du parent via parent::
     function construct() {
         parent::construct();
     }
@@ -20,13 +21,16 @@ class client extends database {
     /*     * ****************************CRUD CLIENT********************* */
 
     /**
-     * Ajouter un client (1)
-     * @return type
+     * Méthode pour créer un nouveau client (registerController)
+     * @return execute
      */
     public function addClient() {
+//On insère les données du client à l'aide d'une requête préparée avec un INSERT INTO et le nom des champs de la table
+//et on insère les valeurs des variables via les marqueurs nominatifs
         $query = 'INSERT INTO `c3005_user` (`firstname`, `lastname`, `mail`, `address`, `phoneNumber`, `password`, `id_c3005_city`)
                   VALUES (:firstname, :lastname,  :mail, :address, :phoneNumber, :password, :id_c3005_city);';
         $queryResult = $this->db->prepare($query);
+//On attribue les valeurs via bindValue et on recupère les attributs de la classe via $this
         $queryResult->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
         $queryResult->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
         $queryResult->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -34,16 +38,24 @@ class client extends database {
         $queryResult->bindValue(':phoneNumber', $this->phoneNumber, PDO::PARAM_STR);
         $queryResult->bindValue(':password', $this->password, PDO::PARAM_STR);
         $queryResult->bindValue(':id_c3005_city', $this->id_c3005_city, PDO::PARAM_INT);
+//O utilise la méthode execute() via un return
         return $queryResult->execute();
     }
     
-//    vérification si l'email exixte deja
+    /**
+     * Méthode qui vérifie si une adresse mail est libre (registerController)
+     * 0 = l'adresse mail n'existe pas ou 1 = l'adresse mail existe 
+     * @return type number
+     */
    function checkFreeMail() {
+ //On effectue une requête qui compte le nombre de ligne qui est égale à mail    
         $query = 'SELECT COUNT(*) AS `nbMail` FROM `c3005_user` WHERE `mail` = :mail';
+//On crée un objet $result qui exécute la méthode query() avec comme paramètre $query 
         $result = $this->db->prepare($query);
         $result->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $result->execute();
         $checkFreeMail = $result->fetch(PDO::FETCH_OBJ);
+ //On return soit 0 soit 1       
         return $checkFreeMail->nbMail;
     }
     //

@@ -118,7 +118,7 @@ if (!empty($_GET['idDelete'])) {
 //Méthode pour afficher le nom et prénom dans la liste déroulante d'un rendez-vous
 $client = new client();
 $clientList = $client->getClientList();
-//méthode pour afficher le prix et la prestation dans la liste déroulante d'un rendez-vous
+//Méthode pour afficher le prix et la prestation dans la liste déroulante d'un rendez-vous
 $performance = new performance();
 $listPerformance = $performance->getPriceByPerformance();
 
