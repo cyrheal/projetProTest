@@ -99,37 +99,10 @@ header h1 {
 .marginLogo{
     margin-left: 50px;
 }
-/*** formulaire ***/
-/*.result{
-    background-color: #bfbfbf;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 6px;
-    margin: 20px;   
-}
-.exercice{
-    background-color: darkseagreen;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 6px;
-    margin: 20px;
-}*/
-/*** calendrier ***/
-.calendarTable{
-    width: 60%;
-    margin-bottom: 30px;
-}
-.calendarTh {
-    border: 2px solid #9fc9f9;
-    padding: 25px;
-    text-align: center !important;
-    background-color: #D0E3FA;
-}
-.calendarTd {
-    border: 2px solid #9fc9f9;
-    padding: 5px;
-    text-align: center;
-    background-color: #f9f6bd;
+.error{
+    color: red;
+    font-size: 30px;
+    margin-left: 40%;
 }
 
 /*** FOOTER ***/

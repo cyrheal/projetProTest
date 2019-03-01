@@ -5,8 +5,8 @@ include '../template/header.php';
 include 'sidebar.php';
 ?>
 
-<div class="col-md-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
+<div class="col-md-9 mainContent">
+    <div class="ml-3 mt-5">
 
 
         <!--  .........      lire le ou les rendez vous    !! a faire..........................             -->       
@@ -76,7 +76,7 @@ include 'sidebar.php';
                     </tbody>
                 </table>  
             </div>
-            <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
+            <div class="ml-3 mt-5 mb-3">
                 <p>Modifier mon profil :</p>
                 <form method="POST" action="account.php">
                     <?php if ($isSuccess) { ?>
@@ -160,12 +160,12 @@ include 'sidebar.php';
                     </div>
                     <input class="btn btn-info" type="submit" value="Changer mes coordonnées" name='submit' />
                     <p class="text-danger"> <?= isset($formError['modify']) ? $formError['modify'] : '' ?> </p>
-                    <button class="btn btn-danger" name="deleteSubmit" type="submit">Supprimer mon compte</button>
+                    <input class="btn btn-danger" type="submit" name="deleteSubmit" value="Supprimer mon compte" />
                 </form>
             </div>
             <?php
         } else {
-            echo 'Vous avez été déconnecté ou votre compte a été supprimé';
+            echo 'Vous avez été déconnecté';
         }
         ?>
     </div>

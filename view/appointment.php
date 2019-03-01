@@ -15,48 +15,9 @@ include 'sidebar.php';
             </div>
         </div>
         <p>Connectez-vous pour prendre rendez-vous via notre formulaire; choisissez ensuite une prestation et 3 dates auxquelles vous serez disponible. Je reviendrais vers vous et vous proposerais des créneaux horaires, valables 24H.</p>
-        <?php if (isset($_SESSION['isConnect']) && ((($_SESSION['id_c3005_role']) == 1 ) || ($_SESSION['id_c3005_role'] == 2))) { ?>
-            <form method="POST" action="appointment.php" class="form">
-                <fieldset>
-                    <legend>Choix du rendez-vous et de la prestation</legend>
-                    <div class="form-group col-md-6">
-                        <label for="mail">Adresse mail</label>
-                        <input name="mail" type="email" class="form-control" id="mail" placeholder="Adresse mail" value="<?= isset($mail) ? $mail : '' ?>" />
-                        <p class="text-danger"> <?= isset($formError['mail']) ? $formError['mail'] : '' ?> </p>
-                    </div>
-                    <label for="idPerformance">Prestation : </label>
-                    <select name="idPerformance" id="idPerformance">
-                        <option value="">Choix de la prestation</option>
-                        <?php foreach ($listPerformance as $performanceDetail) { ?>
-                            <option value = "<?= $performanceDetail->id ?>"><?= $performanceDetail->descriptive . ' ' . $performanceDetail->price ?></option>
-                        <?php } ?>
-                    </select>
-                    <p class="text-danger"><?= isset($formError['performance']) ? $formError['performance'] : '' ?></p>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-
-                            <label for="date"> Date du 1er rendez-vous : </label><input type="date" id="date" name="date1" value=""/>
-                            <p class="text-danger"><?= isset($formError['date1']) ? $formError['date1'] : '' ?></p> 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="date"> Date du 2ème rendez-vous : </label><input type="date" id="date" name="date2" value=""/>
-                            <p class="text-danger"><?= isset($formError['date']) ? $formError['date2'] : '' ?></p> 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="date"> Date du 3ème rendez-vous : </label><input type="date" id="date" name="date3" value=""/>
-                            <p class="text-danger"><?= isset($formError['date3']) ? $formError['date3'] : '' ?></p> 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="textarea">Précision (optionnel)</label>
-                        <textarea class="form-control" id="textarea1" rows="3"></textarea>
-                    </div>
-                    <div class="nav-item">
-                        <button type="submit" class="btn btn-info" name="submit"> Valider</button>
-                    </div>
-                </fieldset>
-            </form>
-        <?php } ?>
+        <div class="mt-2">
+            <p>Contact : <a href="mailto:billecoq-jessica@hotmail.fr">billecoq-jessica@hotmail.fr</a></p>
+        </div>
     </div>
 </div>
 <?php

@@ -20,8 +20,8 @@ class appointment extends database {
      * @return execute
      */
     public function getAddAppointments() {
-//On insert les données du rendez-vous à l'aide de la requête préparée avec un INSERT INTO et le nom des champs de la table
-//On insert les valeurs des variables via les marqueurs nominatifs)        
+//On insère les données du rendez-vous à l'aide de la requête préparée avec un INSERT INTO et le nom des champs de la table
+//et on insère les valeurs des variables via les marqueurs nominatifs        
         $query = 'INSERT INTO `c3005_appointment` (`dateHour`,`id_c3005_user`,id_c3005_performance ) '
                 . 'VALUES (:dateHour, :id_c3005_user, :id_c3005_performance)';
         $queryResult = $this->db->prepare($query);
@@ -43,7 +43,7 @@ class appointment extends database {
         $result = FALSE;
         $query = 'SELECT COUNT(`id`) AS `takenAppointment` FROM `c3005_appointment` '
                 . 'WHERE `dateHour`=:dateHour AND `id_c3005_user`=:id_c3005_user';
-//On crée un objet $result qui exécute la méthode query() avec comme paramètre $query 
+//On crée un objet $freeAppointment qui exécute la méthode query() avec comme paramètre $query 
         $freeAppointment = $this->db->prepare($query);
         $freeAppointment->bindValue(':dateHour', $this->dateHour, PDO::PARAM_STR);
         $freeAppointment->bindValue(':id_c3005_user', $this->id_c3005_user, PDO::PARAM_INT);
@@ -62,7 +62,7 @@ class appointment extends database {
     public function getAppointmentsList() {
 //On met notre requète dans la variable $query qui selectionne des champs de la table c3005_appointment, c3005_performance
 //et c3005_user en effectuant une jointure sur l'id et l'id_c3005_user et sur l'id et id_c3005_performance 
-        $resultList = FALSE;
+        $result = array();
         $query = 'SELECT DATE_FORMAT(`c3005_appointment`.`dateHour`, "%d/%m/%Y") AS `date`,
                         DATE_FORMAT(`c3005_appointment`.`dateHour`, "%H:%i") AS `hour`,
                         `c3005_appointment`.`id` AS idAppointment,
@@ -74,12 +74,14 @@ class appointment extends database {
                     FROM `c3005_appointment`
                     LEFT JOIN `c3005_user`ON `c3005_user`.`id` = `c3005_appointment`.`id_c3005_user`
                     LEFT JOIN `c3005_performance` ON `c3005_performance`.`id` = `c3005_appointment`.`id_c3005_performance` 
-                    ORDER BY `dateHour`';      
-        $result = $this->db->query($query);
-//On crée un objet $resultList qui est un tableau qui affichera toutes les données de la requête grâce à la fonction fetchAll
-//via le paramètre (PDO::FETCH_OBJ) 
-        $resultList = $result->fetchAll(PDO::FETCH_OBJ);
-        return $resultList;
+                    ORDER BY `dateHour`';
+        $queryResult = $this->db->query($query);
+//On crée un objet $result qui est un tableau qui affichera toutes les données de la requête grâce à la fonction fetchAll
+//via le paramètre (PDO::FETCH_OBJ) si $queryResult est un objet
+        if (is_object($queryResult)) {
+            $result = $queryResult->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
     }
 
     /**
@@ -121,7 +123,8 @@ class appointment extends database {
     public function getAppointment() {
 //On met notre requète dans la variable $query qui selectionne des champs de la table c3005_appointment, c3005_performance
 //et c3005_user en effectuant une jointure sur l'id et l'id_c3005_user ainsi que sur l'id et id_c3005_performance 
-        $return = FALSE;
+//en fonction de l'id de la table c3005_appointment  
+        $result = FALSE;
         $query = 'SELECT DATE_FORMAT(`c3005_appointment`.`dateHour`, "%d/%m/%Y") AS `date`,
                         DATE_FORMAT(`c3005_appointment`.`dateHour`, "%H:%i") AS `hour`,
                         `c3005_appointment`.`id` AS idAppointment,
@@ -136,11 +139,13 @@ class appointment extends database {
                     WHERE `c3005_appointment`.`id` = :id';
 //On crée un objet $queryResult qui utilise la fonction prepare avec comme paramètre $query
         $queryResult = $this->db->prepare($query);
-//On attribue la valeur via bindValue et on recupère les attributs de la classe via $this
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
-        $queryResult->execute();
-        $return = $queryResult->fetch(PDO::FETCH_OBJ);
-        return $return;
+//On crée un objet $result qui affichera toutes les données de la requête grâce à la fonction fetch
+//via le paramètre (PDO::FETCH_OBJ) si on exécute la méthode        
+        if ($queryResult->execute()) {
+            $result = $queryResult->fetch(PDO::FETCH_OBJ);
+        }
+        return $result;
     }
 
     /**
@@ -150,7 +155,7 @@ class appointment extends database {
     public function appointmentListByPatient() {
 //On met notre requète dans la variable $query qui selectionne des champs de la table c3005_appointment, c3005_performance
 //et c3005_user en effectuant une jointure sur l'id et l'id_c3005_user ainsi que sur l'id et id_c3005_performance 
-        $return = FALSE;
+        $result = array();
         $query = 'SELECT DATE_FORMAT(`c3005_appointment`.`dateHour`, "%d/%m/%Y") AS `date`,
                         DATE_FORMAT(`c3005_appointment`.`dateHour`, "%H:%i") AS `hour`,
                         `c3005_appointment`.`id` AS idAppointment,
@@ -166,11 +171,12 @@ class appointment extends database {
 //On crée un objet $queryResult qui prépare la requête avec comme paramètre $query
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':id_c3005_user', $this->id_c3005_user, PDO::PARAM_INT);
-        $queryResult->execute();
-//On crée un objet $return qui est un tableau qui affichera toutes les données de la requête grâce à la fonction fetchAll
-//via le paramètre (PDO::FETCH_OBJ) 
-        $return = $queryResult->fetchAll(PDO::FETCH_OBJ);
-        return $return;
+//On crée un objet $result qui est un tableau qui affichera toutes les données de la requête grâce à la fonction fetchAll
+//via le paramètre (PDO::FETCH_OBJ) si on exécute la méthode        
+        if ($queryResult->execute()) {
+            $result = $queryResult->fetchAll(PDO::FETCH_OBJ);
+        }
+        return $result;
     }
 
 }

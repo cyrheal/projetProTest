@@ -111,7 +111,7 @@ include 'sidebar.php';
                 <select name="idLastname" id="idLastname">
                     <option value="">Choix du client</option>
                     <?php foreach ($clientList as $clientDetail) { ?>
-                        <option value = "<?= $clientDetail->id ?>"><?= $clientDetail->lastname . ' ' . $clientDetail->firstname . ' | ' . $clientDetail->loyaltyPoint ?></option>
+                        <option value = "<?= $clientDetail->id ?>"><?= $clientDetail->lastname . ' ' . $clientDetail->firstname . ' | points fidélité ' . $clientDetail->loyaltyPoint ?></option>
                     <?php } ?>
                 </select>
                 <p class="text-danger"><?= isset($formError['clientLoyalty']) ? $formError['clientLoyalty'] : '' ?></p>
