@@ -4,10 +4,20 @@ include '../controller/adminController.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-<div class="col-md-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
-        <!--        début formulaire pour ajouter un rendez-vous-->
+<div class="col-md-9 mainContent">
+    <div class="ml-3 mt-5 mb-3">
         <p class="text-danger"><?= isset($formError['checkAppointment']) ? $formError['checkAppointment'] : '' ?></p>
+        <?php if ($isUpdate) { ?>
+            <p class="text-success">Les points fidélité ont été mis à jour</p>
+            <?php
+        }
+        if ($isNotUpdate) {
+            ?>
+            <p class="text-danger">Désolé, Les points fidélité n'ont pas été mis à jour</p>
+            <?php
+        }
+        ?>
+        <!--Formulaire pour ajouter un rendez-vous-->
         <form method="POST" action="admin.php" class="form">
             <?php if ($isSuccess) { ?>
                 <p class="text-success">Votre rendez-vous a bien été prises en compte</p>
@@ -41,17 +51,15 @@ include 'sidebar.php';
                 <label for="date"> Date du rendez-vous : </label><input type="date" id="date" name="date" value="<?= isset($date) ? $date : '' ?>"/>
                 <p class="text-danger"><?= isset($formError['date']) ? $formError['date'] : '' ?></p> 
                 <p><label for="hour">Heure du rendez-vous (plage horaire 08:00 à 20:00) : </label><input id="hour" type="time" name="hour" min="08:00" max="20:00" value="<?= isset($hour) ? $hour : '' ?>"/></p>
+                <p class="text-danger"><?= isset($formError['hour']) ? $formError['hour'] : '' ?></p> 
                 <div>
                     <div class="nav-item">
-                        <button type="submit" class="btn btn-info" name="submit"> Valider</button>
+                        <button type="submit" class="btn btn-unique" name="submit"> Valider</button>
                     </div>
                 </div>
             </fieldset>
         </form>
-        <!--        fin formulaire pour ajouer un rendez-vous-->
-
-        <!--début formulaire pour lire un rendez-vous-->
-
+        <!--tableau de la liste des rendez-vous-->
         <div class="table-responsive mt-5">
             <p>Liste des rendez-vous :</p>
             <?php if ($isDelete) { ?>
@@ -67,44 +75,36 @@ include 'sidebar.php';
             <table class="table">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>idA</th>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Date</th>
                         <th>Heure</th>
-                        <th>Descriptive</th>
-                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Prix</th>
                         <th>Profil</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- un tableau d objet-->
                     <?php foreach ($listAppointment AS $appointments) { ?>
                         <tr>   
-                            <td><?= $appointments->idUser ?></td>
-                            <td><?= $appointments->idAppointment ?></td>
                             <td><?= $appointments->lastname ?></td>
                             <td><?= $appointments->firstname ?></td>
                             <td><?= $appointments->date ?></td>
                             <td><?= $appointments->hour ?></td>
                             <td><?= $appointments->descriptive ?></td>
                             <td><?= $appointments->price ?></td>
-                            <td><a class="btn btn-primary" href="profileClient.php?id=<?= $appointments->idUser ?>">Voir Profil</a></td>
-                            <td><a class="btn btn-success" href="appointmentChange.php?id=<?= $appointments->idAppointment ?>">Modifier</a></td> 
+                            <td><a class="btn btn-deep-purple" href="profileClient.php?id=<?= $appointments->idUser ?>">Voir Profil</a></td>
+                            <td><a class="btn btn-dark-green" href="appointmentChange.php?id=<?= $appointments->idAppointment ?>">Modifier</a></td> 
                             <td><a class="btn btn-danger" href="admin.php?idDelete=<?= $appointments->idAppointment ?>">Supprimer</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>  
-
         </div>
-        <!-- fin formulaire pour lire un rendez-vous       -->
-
+        <!--formulaire pour les points fidélité-->
         <form method="POST" action="admin.php" class="form">
-
             <fieldset>
                 <legend>Ajouter des points fidélité</legend>
                 <label for="idLastname"> Nom et prénom du client : </label>
@@ -115,13 +115,11 @@ include 'sidebar.php';
                     <?php } ?>
                 </select>
                 <p class="text-danger"><?= isset($formError['clientLoyalty']) ? $formError['clientLoyalty'] : '' ?></p>
-
-
-                <label for="loyaltyPoint"> Points de fidélités : </label><input type="number" id="loyaltyPoint" name="loyaltyPoint" value="<?= isset ($loyaltyPoint) ? $loyaltyPoint : '' ; ?>"/>
+                <label for="loyaltyPoint"> Points de fidélités : </label><input type="number" id="loyaltyPoint" name="loyaltyPoint" value="<?= isset($loyaltyPoint) ? $loyaltyPoint : ''; ?>"/>
                 <p class="text-danger"><?= isset($formError['loyaltyPoint']) ? $formError['loyaltyPoint'] : '' ?></p> 
                 <div>
                     <div class="nav-item">
-                        <button type="submit" class="btn btn-info" name="submitLoyalty"> Valider</button>
+                        <button type="submit" class="btn btn-unique" name="submitLoyalty"> Valider</button>
                     </div>
                 </div>
             </fieldset>

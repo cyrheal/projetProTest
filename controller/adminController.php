@@ -1,4 +1,5 @@
 <?php
+
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date et heure
@@ -12,20 +13,26 @@ $formError = array();
 //Variables pour le message de la création d'un rendez-vous
 $isSuccess = FALSE;
 $isError = FALSE;
+$isUpdate= FALSE;
+$isNotUpdate = FALSE;
 //Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
 //sinon je le stock dans mon tableau formError
 if (isset($_POST['submit'])) {
 //Menu déroulant pour le nom et prénom
     if (isset($_POST['idLastname'])) {
-        $id_c3005_user = htmlspecialchars($_POST['idLastname']);
-    } else {
-        $formError['client'] = 'Veuillez selectioner un client';
+        if (!empty($_POST['idLastname'])) {
+            $id_c3005_user = htmlspecialchars($_POST['idLastname']);
+        } else {
+            $formError['client'] = 'Veuillez selectioner un client';
+        }
     }
 //Menu déroulant prestation
     if (isset($_POST['idPerformance'])) {
-        $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
-    } else {
-        $formError['performance'] = 'Veuillez selectioner une prestation';
+        if (!empty($_POST['idPerformance'])) {
+            $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
+        } else {
+            $formError['performance'] = 'Veuillez selectioner un client';
+        }
     }
 //Date du rendez-vous
     if (isset($_POST['date'])) {
@@ -36,7 +43,7 @@ if (isset($_POST['submit'])) {
                 $formError['date'] = 'Votre date de rendez-vous est invalide.';
             }
         } else {
-            $formError['date'] = 'Erreur,merci de remplir le champ date de rendez-vous.';
+            $formError['date'] = 'Veuillez remplir le champ date du rendez-vous.';
         }
     }
 //Heure du rensez-vous
@@ -48,7 +55,7 @@ if (isset($_POST['submit'])) {
                 $formError['hour'] = 'Votre heure de rendez-vous est invalide.';
             }
         } else {
-            $formError['hour'] = 'Erreur,merci de remplir le champ heure de rendez-vous.';
+            $formError['hour'] = 'Veuillez remplir le champ heure du rendez-vous.';
         }
     }
 //Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $appointment 
@@ -80,8 +87,6 @@ if (isset($_POST['submitLoyalty'])) {
         } else {
             $formError['clientLoyalty'] = 'Veuillez selectioner un client';
         }
-    } else {
-        $formError['clientLoyalty'] = 'client invalide';
     }
 //Points fidélité
     if (isset($_POST['loyaltyPoint'])) {
@@ -90,8 +95,6 @@ if (isset($_POST['submitLoyalty'])) {
         } else {
             $formError['loyaltyPoint'] = 'Veuillez selectioner un chiffre';
         }
-    } else {
-        $formError['loyaltyPoint'] = 'chiffre invalide';
     }
 //Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $clientLoyaltyPoint 
 //et on éxécute la méthode updateLoyaltyPoint() pour modifier les points fidélité du client 
@@ -99,7 +102,11 @@ if (isset($_POST['submitLoyalty'])) {
         $clientLoyaltyPoint = new client();
         $clientLoyaltyPoint->id = $id_c3005_user;
         $clientLoyaltyPoint->loyaltyPoint = $loyaltyPoint;
-        $clientLoyaltyPoint->updateLoyaltyPoint();
+        if($clientLoyaltyPoint->updateLoyaltyPoint()){
+            $isUpdate = TRUE;
+        }else{
+            $isNotUpdate = TRUE;
+        }
     }
 }
 //Méthode pour lire la liste des rendez-vous 

@@ -39,10 +39,9 @@ include 'sidebar.php';
                 </tbody>
             </table> 
         </div>
-        <p><a href="admin.php" class="btn btn-info">retour</a></p>
+        <p><a href="admin.php"><button  class="btn btn-blue-grey">retour</button></a></p>
     </div>
 </div>
-
 <?php
 include '../template/footer.php';
 ?>
