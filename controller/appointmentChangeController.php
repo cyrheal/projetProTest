@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
                 $formError['date'] = 'Votre date de rendez-vous est invalide.';
             }
         } else {
-            $formError['date'] = 'Erreur,merci de remplir le champ date de rendez-vous.';
+            $formError['date'] = 'Veuillez remplir le champ date de rendez-vous.';
         }
     }
 //Heure du rendez-vous
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
                 $formError['hour'] = 'Votre heure de rendez-vous est invalide.';
             }
         } else {
-            $formError['hour'] = 'Erreur,merci de remplir le champ heure de rendez-vous.';
+            $formError['hour'] = ' heure du rendez-vous';
         }
     }
 //Méthode pour la modification d'un rendez-vous   

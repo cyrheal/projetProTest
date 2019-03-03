@@ -10,7 +10,7 @@ include 'sidebar.php';
         <!--Tableau pour que le client lise ses rendez-vous-->
         <?php if (isset($_SESSION['isConnect'])) { ?>
             <div class="table-responsive mt-5">
-                <p>Liste des rendez-vous :</p>
+                <p class="size">Liste de mes rendez-vous :</p>
                 <table class="table">
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@ include 'sidebar.php';
                 </table>
             </div>
             <!--Tableau pour que le client lise son profil-->
-            <p>Informations personnelles :</p>
+            <p class="size">Mes informations personnelles :</p>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -62,7 +62,7 @@ include 'sidebar.php';
             </div>
             <!--formulaire pour que le client modifie ses informations-->
             <div class="ml-3 mt-5 mb-3">
-                <p>Modifier mon profil :</p>
+                <p class="size">Modifier mon profil :</p>
                 <form method="POST" action="account.php">
                     <?php if ($isSuccess) { ?>
                         <p class="text-success">Votre modification a bien été prise en compte</p>

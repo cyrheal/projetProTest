@@ -1,6 +1,7 @@
 <footer class="col-md-12">
     <div class="contact mt-2">
         <p>Contact : <a href="mailto:billecoq-jessica@hotmail.fr">billecoq-jessica@hotmail.fr</a></p>
+        <a href="legalNotice.php">Mentions légales</a>
     </div>
 </footer>
 </div><!-- /row -->

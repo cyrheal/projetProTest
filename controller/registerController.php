@@ -47,7 +47,6 @@ $isError = FALSE;
                 $formError['firstname'] = 'Veuillez remplir le champ nom.';
             }
         }
-
 //Numéro de téléphone
         if (isset($_POST['phoneNumber'])) {
             if (!empty($_POST['phoneNumber'])) {

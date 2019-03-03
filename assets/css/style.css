@@ -1,9 +1,3 @@
-/******** STOCK POUBELLE **********/
-/*    #F185B3 => BG NAVBAR
-/*    /*    position:absolute;
-        top:0;
-        left:0; carousel
-***********************************/
 /*** BODY ***/
 body{
     background-color: #c98dc9;
@@ -47,7 +41,6 @@ header h1 {
 /*** TABLEAU PRESTATION ***/
 .performanceTable {
     border: 3px solid #9fc9f9;
-    /*border-collapse détermine si les bordures d'un tableau sont séparées ou fusionnées*/
     border-collapse: collapse; 
     width: 80%;
     margin-bottom: 30px;
@@ -56,10 +49,8 @@ header h1 {
     font-family: monospace;
     font-size: 25px;
     border: 2px solid #9fc9f9;
-    /*taille de la première cellule (les 3 / 4))*/
     width: 75%;
     padding: 15px;
-    /*pourquoi le texte align est en inherit?*/
     text-align: center !important;
     background-color: #D0E3FA;
 }
@@ -99,12 +90,16 @@ header h1 {
 .marginLogo{
     margin-left: 50px;
 }
+/*** error404 ***/
 .error{
     color: red;
     font-size: 30px;
     margin-left: 40%;
 }
-
+/*** page admin ***/
+.size{
+    font-size: 25px;
+}
 /*** FOOTER ***/
 footer{
     height:100px;
@@ -118,25 +113,11 @@ footer{
 
 @media screen and (max-width: 640px){
     /*    responsive taille prestations et tarifs du tableau*/
-    .performanceTh{
-        font-size: 100%;  
-    }
-    .performanceTable{
-        margin-left: -4%;
-    }
-    .calendarTh {
-        padding: 5px; 
-    }
-    .calendarTable{
-        margin-left: -20px;
-    }
     header{
         background-size: 100% 100%;
         height: 80px;
     }
-
     header h1{
         font-size: 20px;
     }
- 
 }

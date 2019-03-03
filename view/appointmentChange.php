@@ -10,7 +10,7 @@ include 'sidebar.php';
             ?>
             <!--tableau du rendez-vous du client-->
             <div class="table-responsive mt-5">
-                <p>Détail du rendez-vous :</p>
+                <div class="size">Détail du rendez-vous :</div>
                 <table class="table">
                     <thead>
                         <tr>

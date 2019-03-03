@@ -1,6 +1,5 @@
-<div class="col-md-3 sidebar"><!--couleur colonne gauche-->
-    <!--carrousel-->
-    <div id="carousel" class="mt-3"> <!-- class="ml-0 mr-5"-->
+<div class="col-md-3 sidebar">
+    <div id="carousel" class="mt-3"> 
         <img class="carouselImg" src="../assets/img/nail/nail1.jpg" />
         <img class="carouselImg" src="../assets/img/nail/nail2.jpg" />
         <img class="carouselImg" src="../assets/img/nail/nail3.jpg" />
@@ -28,7 +27,7 @@
         </div>
     </div>
     <div class="row mt-5 mb-3 ml-5 ">
-        <div class="offset-3" >
+        <div class="offset-3">
             <a href="https://www.facebook.com/profile.php?id=100002743732510" target="_blank"><img class="facebook" src="../assets/img/logoFacebook.svg" alt="facebook"/></a>
             <a href="https://www.instagram.com/nailsbeautybyjess_soissons/" target="_blank"><img class="instagram" src="../assets/img/logoInstagram.svg" alt="instagram"/></a>
         </div>

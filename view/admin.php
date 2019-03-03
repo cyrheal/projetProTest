@@ -61,7 +61,7 @@ include 'sidebar.php';
         </form>
         <!--tableau de la liste des rendez-vous-->
         <div class="table-responsive mt-5">
-            <p>Liste des rendez-vous :</p>
+            <div class="size">Liste des rendez-vous :</div>
             <?php if ($isDelete) { ?>
                 <p class="text-success">Votre rendez-vous a bien été supprimé</p>
                 <?php

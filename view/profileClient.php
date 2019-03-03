@@ -4,9 +4,9 @@ include '../controller/profileClientController.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-
-<div class="col-md-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5"><!--marge left 3 marge top 5-->
+<div class="col-md-9 mainContent">
+    <div class="ml-3 mt-5">
+        <!--tableau qui affiche le profil d'un client dans la partie admin-->
         <div class="table-responsive mb-5">
             <table class="table">
                 <thead>
@@ -22,10 +22,6 @@ include 'sidebar.php';
                     </tr>
                 </thead>
                 <tbody>
-
-                    <!--        if ($isPatient) {-->
-
-                    <!-- un tableau d objet-->
                     <tr>
                         <td><?= $isClient->lastname ?></td>
                         <td><?= $isClient->firstname ?></td>

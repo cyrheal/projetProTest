@@ -2,11 +2,10 @@
 include '../configuration.php';
 include '../controller/registerController.php';
 include '../template/header.php';
-
 include 'sidebar.php';
 ?>
-<div class="col-md-9 mainContent"><!--couleur colonne droite-->
-    <div class="ml-3 mt-5 mb-3"><!--marge left 3 marge top 5-->
+<div class="col-md-9 mainContent">
+    <div class="ml-3 mt-5 mb-3">
         <p>Formulaire d'inscription</p>
         <form method="POST" action="register.php">
             <?php if ($isSuccess) { ?>
@@ -22,7 +21,6 @@ include 'sidebar.php';
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="lastname">Nom</label>
-                    <!--la value permet de garder la valeur du champ quand on fait une erreur dans un autre champ-->
                     <input name="lastname" type="text" class="form-control" id="lastname" placeholder="Nom" value="<?= isset($lastname) ? $lastname : '' ?>" />
                     <p class="text-danger"> <?= isset($formError['lastname']) ? $formError['lastname'] : '' ?> </p>
                 </div>
@@ -91,7 +89,7 @@ include 'sidebar.php';
                     <p class="text-danger"> <?= isset($formError['phoneNumber']) ? $formError['phoneNumber'] : '' ?> </p>
                 </div>
             </div>
-            <input class="btn btn-info" type="submit" value="S'enregitrer" name='submit' />
+            <input class="btn btn-unique" type="submit" value="S'enregitrer" name='submit' />
         </form>
     </div>
 </div>
