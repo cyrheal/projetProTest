@@ -11,5 +11,5 @@ include_once '../model/client.php';
 include_once '../model/appointment.php';
 include_once '../model/performance.php';
 session_start();
-?>
+
 

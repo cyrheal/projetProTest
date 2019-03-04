@@ -10,17 +10,21 @@ $isError = FALSE;
 //Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
 //sinon je le stock dans mon tableau formError
 if (isset($_POST['submit'])) {
-//Menu déroulant pour le nom prénom
+//Menu déroulant pour le nom et prénom
     if (isset($_POST['idLastname'])) {
-        $id_c3005_user = htmlspecialchars($_POST['idLastname']);
-    } else {
-        $formError['client'] = 'Veuillez selectioner un patient';
+        if (!empty($_POST['idLastname'])) {
+            $id_c3005_user = htmlspecialchars($_POST['idLastname']);
+        } else {
+            $formError['client'] = 'Veuillez selectioner un client';
+        }
     }
 //Menu déroulant des prestations
     if (isset($_POST['idPerformance'])) {
-        $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
-    } else {
-        $formError['performance'] = 'Veuillez selectioner une prestation';
+        if (!empty($_POST['idPerformance'])) {
+            $id_c3005_performance = htmlspecialchars($_POST['idPerformance']);
+        } else {
+            $formError['performance'] = 'Veuillez selectioner un client';
+        }
     }
 //Date du rendez-vous
     if (isset($_POST['date'])) {

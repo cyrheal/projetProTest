@@ -30,7 +30,7 @@ include 'sidebar.php';
             }
             ?>
             <fieldset>
-                <legend>Ajouter un rendez-Vous</legend>
+                <legend>Ajouter un rendez-vous :</legend>
                 <label for="idLastname"> Nom et prénom du client : </label>
                 <select name="idLastname" id="idLastname">
                     <option value="">Choix du client</option>
@@ -106,7 +106,7 @@ include 'sidebar.php';
         <!--formulaire pour les points fidélité-->
         <form method="POST" action="admin.php" class="form">
             <fieldset>
-                <legend>Ajouter des points fidélité</legend>
+                <legend>Ajouter des points fidélité :</legend>
                 <label for="idLastname"> Nom et prénom du client : </label>
                 <select name="idLastname" id="idLastname">
                     <option value="">Choix du client</option>

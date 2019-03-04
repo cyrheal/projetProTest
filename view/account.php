@@ -4,7 +4,6 @@ include '../controller/accountController.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
-
 <div class="col-md-9 mainContent">
     <div class="ml-3 mt-5">
         <!--Tableau pour que le client lise ses rendez-vous-->

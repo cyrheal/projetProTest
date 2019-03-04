@@ -52,19 +52,21 @@ if (isset($_POST['submit'])) {
     }
 //Adresse mail
 //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
-    if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
-        if ($_POST['mail'] == $_POST['confirmMail']) {
-            if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-                $mail = htmlspecialchars($_POST['mail']);
+    if (isset($_POST['mail']) && isset($_POST['confirmMail'])) {
+        if (!empty($_POST['mail']) && !empty($_POST['confirmMail'])) {
+            if ($_POST['mail'] == $_POST['confirmMail']) {
+                if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                    $mail = htmlspecialchars($_POST['mail']);
+                } else {
+                    $formError['mail'] = 'Le courriel n\'est pas valide';
+                }
             } else {
-                $formError['mail'] = 'Le courriel n\'est pas valide';
+                $formError['mail'] = 'Les courriels ne sont pas identiques';
             }
         } else {
-            $formError['mail'] = 'Les courriels ne sont pas identiques';
+            $formError['mail'] = 'Veuillez renseigner un courriel';
+            $formError['confirmMail'] = 'Veuillez confirmer le courriel';
         }
-    } else {
-        $formError['mail'] = 'Veuillez renseigner un courriel';
-        $formError['confirmMail'] = 'Veuillez confirmer le courriel';
     }
 //Adresse postale
     if (isset($_POST['address'])) {
@@ -81,22 +83,26 @@ if (isset($_POST['submit'])) {
 //Mot de passe
 //On vérifie que le mot de passe est renseigné et qu'il est identique à la confirmation 
 //et on le hash avant de le mettre en base de données. 
-    if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
-        if ($_POST['password'] == $_POST['confirmPassword']) {
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    if (isset($_POST['password']) && isset($_POST['confirmPassword'])) {
+        if (!empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
+            if ($_POST['password'] == $_POST['confirmPassword']) {
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            } else {
+                $formError['password'] = 'Les mots de passe ne sont pas identiques';
+            }
         } else {
-            $formError['password'] = 'Les mots de passe ne sont pas identiques';
+            $formError['password'] = 'Veuillez renseigner un mot de passe';
+            $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
         }
-    } else {
-        $formError['password'] = 'Veuillez renseigner un mot de passe';
-        $formError['confirmPassword'] = 'Veuillez confirmer le mot de passe';
     }
 //verification ville et code postale 
-    if (!empty($_POST['city']) && (!empty($_POST['zipcode']))) {
-        $id_c3005_city = htmlspecialchars($_POST['city']);
-    } else {
-        $formError['city'] = 'Veuillez renseigner la ville';
-        $formError['zipcode'] = 'veuillez renseigner le code postale';
+    if (isset($_POST['city']) && (isset($_POST['zipcode']))) {
+        if (!empty($_POST['city']) && (!empty($_POST['zipcode']))) {
+            $id_c3005_city = htmlspecialchars($_POST['city']);
+        } else {
+            $formError['city'] = 'Veuillez renseigner la ville';
+            $formError['zipcode'] = 'veuillez renseigner le code postale';
+        }
     }
 //Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $clientUpdate 
 //grâce à la classe client

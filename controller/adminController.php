@@ -1,5 +1,4 @@
 <?php
-
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date et heure

@@ -38,8 +38,9 @@ include 'sidebar.php';
                 ?>
                 <p>Le rendez-vous n'a pas été trouvé</p>
             <?php } ?>
-                <p><a href="admin.php"><button type="button" class="btn btn-blue-grey">retour</button></a></p>
+            <p><a href="admin.php"><button type="button" class="btn btn-blue-grey">retour</button></a></p>
         </div>
+        <!--formulaire pour modifier les rendez-vous-->
         <p class="text-danger"><?= isset($formError['checkAppointment']) ? $formError['checkAppointment'] : '' ?></p>
         <form method="POST" class="form" action="appointmentChange.php?id=<?= $appointment->id ?>">
             <?php if ($isSuccess) { ?>

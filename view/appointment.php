@@ -1,6 +1,5 @@
 <?php
 include '../configuration.php';
-include '../controller/appointmentController.php';
 include '../template/header.php';
 include 'sidebar.php';
 ?>
