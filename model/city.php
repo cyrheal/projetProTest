@@ -44,7 +44,22 @@ class city extends database {
         }
         return $result;
     }
-
+/**
+ * Méthode pour récupérer la ville en fonction de l id 
+ * @return type array
+ */
+    public function getCityById() {
+        $result = FALSE;
+        $query = 'SELECT `city` FROM `c3005_city` WHERE `id`=:id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+//On crée un objet $result qui affichera la ville grâce à la fonction fetch
+//via le paramètre (PDO::FETCH_OBJ) si la méthode est exécuté
+        if ($queryResult->execute()) {
+            $result = $queryResult->fetch(PDO::FETCH_OBJ);
+        }
+        return $result;
+    }
 }
 
 ?>

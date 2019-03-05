@@ -1,5 +1,6 @@
 <?php
 //Appel AJAX pour le mail
+//quand je sort du champs mail
 if (isset($_POST['mailTest'])) {
     include '../configuration.php';
     $clientMail = new client();

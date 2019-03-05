@@ -1,4 +1,5 @@
 <?php
+
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date et heure
@@ -12,7 +13,7 @@ $formError = array();
 //Variables pour le message de la création d'un rendez-vous
 $isSuccess = FALSE;
 $isError = FALSE;
-$isUpdate= FALSE;
+$isUpdate = FALSE;
 $isNotUpdate = FALSE;
 //Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
 //sinon je le stock dans mon tableau formError
@@ -101,9 +102,9 @@ if (isset($_POST['submitLoyalty'])) {
         $clientLoyaltyPoint = new client();
         $clientLoyaltyPoint->id = $id_c3005_user;
         $clientLoyaltyPoint->loyaltyPoint = $loyaltyPoint;
-        if($clientLoyaltyPoint->updateLoyaltyPoint()){
+        if ($clientLoyaltyPoint->updateLoyaltyPoint()) {
             $isUpdate = TRUE;
-        }else{
+        } else {
             $isNotUpdate = TRUE;
         }
     }
@@ -116,6 +117,7 @@ $appointmentDelete = new appointment();
 if (!empty($_GET['idDelete'])) {
     $appointmentDelete->id = htmlspecialchars($_GET['idDelete']);
     if ($appointmentDelete->deleteAppointmentById()) {
+        $listAppointment = $appointmentList->getAppointmentsList();
         $isDelete = TRUE;
     } else {
         $isNotDelete = TRUE;

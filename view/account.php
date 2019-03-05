@@ -121,7 +121,7 @@ include 'sidebar.php';
                             <label for="zipcode">Code postale</label>
                             <select name="zipcode" id="zipcode" class="form-control">
                                 <?php foreach ($zipcodeList as $zipCode) { ?>
-                                    <option <?php if ($_SESSION['zipcode'] == $zipCode->zipcode) { ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
+                                <option value="<?= $zipCode->zipcode ?>" <?php if ($_SESSION['zipcode'] == $zipCode->zipcode) { ?> selected <?php } ?> > <?= $zipCode->zipcode ?></option>
                                 <?php } ?>
                             </select>
                             <p class="text-danger"> <?= isset($formError['zipcode']) ? $formError['zipcode'] : '' ?> </p>

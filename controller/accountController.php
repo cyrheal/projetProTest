@@ -1,4 +1,5 @@
 <?php
+
 //Regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //Regex nom et prénom
@@ -104,6 +105,10 @@ if (isset($_POST['submit'])) {
             $formError['zipcode'] = 'veuillez renseigner le code postale';
         }
     }
+//Méthode pour récuperer la ville en fonction de l id
+$city = new city();
+$city->id = $id_c3005_city;
+$cityName = $city->getCityById();
 //Si je valide le formulaire et que le tableau d'erreur est vide, on instancie l'objet $clientUpdate 
 //grâce à la classe client
     if (count($formError) == 0) {
@@ -123,7 +128,8 @@ if (isset($_POST['submit'])) {
             $_SESSION['mail'] = $mail;
             $_SESSION['address'] = $address;
             $_SESSION['phoneNumber'] = $phoneNumber;
-            $_SESSION['password'] = $password;
+            $_SESSION['city'] = $cityName->city;
+            $_SESSION['zipcode'] = $_POST['zipcode'];
             $_SESSION['id_c3005_city'] = $id_c3005_city;
             $isSuccess = TRUE;
         } else {
