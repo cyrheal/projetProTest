@@ -44,10 +44,11 @@ class city extends database {
         }
         return $result;
     }
-/**
- * Méthode pour récupérer la ville en fonction de l id 
- * @return type array
- */
+
+    /**
+     * Méthode pour récupérer la ville en fonction de l id 
+     * @return type array
+     */
     public function getCityById() {
         $result = FALSE;
         $query = 'SELECT `city` FROM `c3005_city` WHERE `id`=:id';
@@ -60,6 +61,7 @@ class city extends database {
         }
         return $result;
     }
+
 }
 
 ?>

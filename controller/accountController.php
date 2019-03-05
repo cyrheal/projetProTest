@@ -1,5 +1,4 @@
 <?php
-
 //Regex numéro de téléphone
 $regexPhone = '/^[0-9]{10}$/';
 //Regex nom et prénom
@@ -13,7 +12,7 @@ $isSuccess = FALSE;
 $isError = FALSE;
 //Si $_POST['submit'] existe et que $_POST['lastname'] existe et différent de vide alors je vérifie le 
 //$_POST['lastname'] avec ma regex. Si $_POST['lastname'] respecte les conditions de ma regex,je declare
-// ma varible $lastname sinon je le stock dans mon tableau formError.
+//ma varible $lastname sinon je le stock dans mon tableau formError.
 if (isset($_POST['submit'])) {
 //Nom du client  
     if (isset($_POST['lastname'])) {

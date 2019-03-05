@@ -20,7 +20,7 @@ class client extends database {
         parent::construct();
     }
 
-    /*     * ********************CRUD CLIENT*********************      */
+    /*     ********************CRUD CLIENT*********************      */
 
     /**
      * Méthode pour créer un nouveau client (registerController)
@@ -123,7 +123,7 @@ class client extends database {
         return $result;
     }
 
-    /*     * ***************************CRUD CLIENT fin********************* */
+    /*     ***************************CRUD CLIENT fin********************* */
 
     /**
      * Méthode qui retourne le hashage du mot de passe du compte sélectionné en fonction du mail (loginController)

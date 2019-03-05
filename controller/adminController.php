@@ -1,5 +1,4 @@
 <?php
-
 //Déclaration regex nom et prénom
 $regexName = '/^[a-zA-Z\- ]+$/';
 //Déclaration regex date et heure
@@ -13,6 +12,7 @@ $formError = array();
 //Variables pour le message de la création d'un rendez-vous
 $isSuccess = FALSE;
 $isError = FALSE;
+//Variables pour le message de la mofification d'un rendez-vous
 $isUpdate = FALSE;
 $isNotUpdate = FALSE;
 //Si $_POST['submit'] existe et que $_POST['idLastname'] existe alors je declare ma varible $id_c3005_user 
